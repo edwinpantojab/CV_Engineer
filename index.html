@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,120 +14,192 @@
   <meta name="author" content="Edwin Pantoja Bustos" />
   <meta name="keywords" content="Ingeniero de Sistemas, Programador, Desarrollo Web, Soporte Técnico, Bases de Datos" />
 </head>
-<style>
 
-  html {
-    scroll-behavior: smooth;
+<style>
+  #stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
   }
+
+  nav {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0.9));
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  nav.hidden {
+    transform: translateY(-100%);
+  }
+
+  main {
+    background: rgba(18, 28, 53, 0.85);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.5);
+  }
+
+  h1,
+  h2,
+  h3,
+  p,
+  li {
+    color: #e5e7eb;
+  }
+
+  a {
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: #60a5fa;
+  }
+
+  hr {
+    border: 1px solid #ffffff;
+    margin: 20px 0;
+  }
+
+  footer {
+    background: linear-gradient(to right, #ffffff, #000000, #ffffff);
+  }
+
+  /* Estilos responsivos para imágenes */
+  .skill-icon {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+  }
+
+  @media (max-width: 640px) {
+    .skill-icon {
+      width: 24px;
+      height: 24px;
+    }
     
-    #stars {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      width: 100%;
-      height: 100%;
+    #skills-icons {
+      grid-template-columns: repeat(4, 1fr);
     }
-    nav {
-      background: linear-gradient(to right, rgba(0, 0, 0, 0.9),rgba(255, 255, 255, 0.9) ,rgba(0, 0, 0, 0.9));
-      backdrop-filter: blur(5px);
-    }
+  }
+
+  .skill-icon:hover {
+    transform: scale(1.5);
+  }
+
+  .icon i {
+    transition: transform 0.3s ease;
+  }
+
+  .icon:hover i {
+    transform: scale(1.5);
+  }
+
+  /* Mejoras de responsividad para el contenido */
+  @media (max-width: 768px) {
     main {
-      background: rgba(18, 28, 53, 0.85);
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.5);
+      padding: 1rem;
+      margin-top: 80px; /* Espacio para la barra de navegación */
     }
-    h1, h2, h3, p, li {
-      color: #e5e7eb;
+    
+    .grid-cols-2, .grid-cols-6 {
+      grid-template-columns: 1fr;
     }
-    a {
-      transition: color 0.3s ease;
+    
+    #social-icons {
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    a:hover {
-      color: #60a5fa;
+    
+    nav div {
+      padding: 0.5rem;
     }
-    hr {
-      border: 1px solid #ffffff;
-      margin: 20px 0;
+    
+    nav a {
+      font-size: 0.9rem;
+      padding: 0.25rem 0.5rem;
     }
-    footer {
-      background: linear-gradient(to right, #ffffff,#000000, #ffffff);
-    }
-  </style>
+  }
+</style>
+
 <body class="antialiased bg-white-100">
-<canvas id="stars"></canvas>
+  <canvas id="stars"></canvas>
 
   <!-- Navegación -->
-<nav class="fixed top-0 left-0 w-full z-50" style="background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0.9)); backdrop-filter: blur(5px);">
-  <div class="container mx-auto px-4 py-3 flex flex-col items-center justify-center space-y-2">
-    <div class="flex space-x-6 justify-center text-black font-bold">
-      <a href="#inicio" class="hover:underline">Inicio</a>
-      <a href="#sobre-mi" class="hover:underline">Sobre Mí</a>
-      <a href="#habilidades" class="hover:underline">Habilidades</a>
-      <a href="#experiencia" class="hover:underline">Experiencia</a>
-      <a href="#proyectos" class="hover:underline">Proyectos</a>
-      <a href="#contacto" class="hover:underline">Contacto</a>
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50">
+    <div class="container mx-auto px-4 py-3 flex flex-col items-center justify-center space-y-2">
+      <div class="flex space-x-4 md:space-x-6 justify-center text-black font-bold">
+        <a href="#inicio" class="hover:underline px-2 py-1">Inicio</a>
+        <a href="#sobre-mi" class="hover:underline px-2 py-1">Sobre Mí</a>
+        <a href="#habilidades" class="hover:underline px-2 py-1">Habilidades</a>
+        <a href="#experiencia" class="hover:underline px-2 py-1">Experiencia</a>
+        <a href="#proyectos" class="hover:underline px-2 py-1">Proyectos</a>
+        <a href="#contacto" class="hover:underline px-2 py-1">Contacto</a>
+      </div>
+      <button class="block md:hidden text-white" id="mobile-menu-button">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
-    <button class="block md:hidden text-white">
-      <i class="fas fa-bars"></i>
-    </button>
-  </div>
-</nav>
+  </nav>
+
   <!-- Contenido principal -->
   <main id="inicio" class="container mx-auto px-4 py-20 max-w-5xl">
-  <header class="text-center mb-12">
-  <h1 class="text-4xl md:text-5xl font-bold text-white">Edwin Pantoja Bustos</h1>
-  <p class="text-xl md:text-2xl text-white-600">👨‍💻 Ingeniero de Sistemas y Programador</p>
-  <div class="mt-4 flex justify-center space-x-6 text-blue-700" id="social-icons">
-    <a href="mailto:edwinpantoja2015@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
-    <a href="tel:+573233932071" class="icon"><i class="fas fa-phone"></i></a>
-    <a href="https://github.com/edwinpantojab" target="_blank" class="icon"><i class="fab fa-github"></i></a>
-    <a href="https://www.linkedin.com/in/edwin-pantoja-bustos-07233b264/" target="_blank" class="icon"><i class="fab fa-linkedin"></i></a>
-  </div>
+    <header class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-white">Edwin Pantoja Bustos</h1>
+      <p class="text-xl md:text-2xl text-white-600">👨‍💻 Ingeniero de Sistemas y Programador</p>
+      <div class="mt-4 flex justify-center space-x-6 text-blue-700" id="social-icons">
+        <a href="mailto:edwinpantoja2015@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
+        <a href="tel:+573233932071" class="icon"><i class="fas fa-phone"></i></a>
+        <a href="https://github.com/edwinpantojab" target="_blank" class="icon"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/edwin-pantoja-bustos-07233b264/" target="_blank" class="icon"><i
+            class="fab fa-linkedin"></i></a>
+      </div>
+    </header>
 
-  <!-- Estilos para los iconos -->
-  <style>
-    .icon i {
-      transition: transform 0.3s ease; /* Suaviza la animación */
-    }
-
-    .icon:hover i {
-      transform: scale(1.5); /* Aumenta el tamaño del icono */
-    }
-  </style>
-</header>
-
-    <hr style="border: 1px solid rgb(255, 255, 255); margin: 20px 0;" />
+    <hr />
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white">Perfil</h2>
       <p class="mt-2 leading-relaxed text-white">
-        👨‍🎓 Ingeniero de Sistemas en formación con una sólida base en desarrollo de software, programación y bases de datos.
+        👨‍🎓 Ingeniero de Sistemas en formación con una sólida base en desarrollo de software, programación y bases de
+        datos.
       </p>
       <p class="mt-2 text-white-700 leading-relaxed">
-        💻 He trabajado en proyectos de desarrollo web, control de acceso y gestión de usuarios, utilizando tecnologías modernas como C#, JavaScript y Firebase. Además, poseo habilidades en soporte técnico de primer y segundo nivel, optimización de procesos tecnológicos y resolución de problemas complejos.
+        💻 He trabajado en proyectos de desarrollo web, control de acceso y gestión de usuarios, utilizando tecnologías
+        modernas como C#, JavaScript y Firebase. Además, poseo habilidades en soporte técnico de primer y segundo nivel,
+        optimización de procesos tecnológicos y resolución de problemas complejos.
       </p>
       <p class="mt-2 text-white-700 leading-relaxed">
-        🚀 Estoy comprometido con la excelencia y la calidad en cada proyecto, buscando siempre soluciones innovadoras y eficientes que contribuyan al crecimiento de las organizaciones mediante el uso estratégico de la tecnología.
+        🚀 Estoy comprometido con la excelencia y la calidad en cada proyecto, buscando siempre soluciones innovadoras y
+        eficientes que contribuyan al crecimiento de las organizaciones mediante el uso estratégico de la tecnología.
       </p>
     </section>
-    <hr style="border: 1px solid rgb(255, 255, 255); margin: 20px 0;" />
+    <hr />
     <section id="sobre-mi" class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Sobre Mí</h2>
       <p class="mt-2 text-white-700 leading-relaxed">
-        👨‍💻 Ingeniero de Sistemas en formación, con sólidos conocimientos en desarrollo web con WordPress, programación, bases de datos y arquitectura de datos. Poseo experiencia en el análisis, diseño e implementación de sistemas de información, aplicando principios de estructuras de datos como pilas, colas y listas. He trabajado en proyectos de control de acceso, gestión de usuarios y mantenimiento de sistemas, utilizando tecnologías como C#, Firebase y JavaScript.
+        👨‍💻 Ingeniero de Sistemas en formación, con sólidos conocimientos en desarrollo web con WordPress,
+        programación, bases de datos y arquitectura de datos. Poseo experiencia en el análisis, diseño e implementación
+        de sistemas de información, aplicando principios de estructuras de datos como pilas, colas y listas. He
+        trabajado en proyectos de control de acceso, gestión de usuarios y mantenimiento de sistemas, utilizando
+        tecnologías como C#, Firebase y JavaScript.
       </p>
       <p class="mt-2 text-white-700 leading-relaxed">
-        🔧 Profesional apasionado por la tecnología y la resolución de problemas, con experiencia en soporte técnico de primer y segundo nivel, optimización de procesos tecnológicos y desarrollo de software de calidad. Me destaco por mi capacidad de análisis, creatividad y compromiso con la excelencia en cada proyecto.
+        🔧 Profesional apasionado por la tecnología y la resolución de problemas, con experiencia en soporte técnico de
+        primer y segundo nivel, optimización de procesos tecnológicos y desarrollo de software de calidad. Me destaco
+        por mi capacidad de análisis, creatividad y compromiso con la excelencia en cada proyecto.
       </p>
       <p class="mt-2 text-white-700 leading-relaxed">
-        🌟 Busco contribuir con soluciones innovadoras y eficientes en entornos tecnológicos desafiantes, aplicando mis conocimientos y habilidades para el crecimiento de las organizaciones mediante el uso eficiente de la tecnología.
+        🌟 Busco contribuir con soluciones innovadoras y eficientes en entornos tecnológicos desafiantes, aplicando mis
+        conocimientos y habilidades para el crecimiento de las organizaciones mediante el uso eficiente de la
+        tecnología.
       </p>
     </section>
-    <hr style="border: 1px solid rgb(255, 255, 255); margin: 20px 0;" />
+    <hr />
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-primary-color">Habilidades Técnicas</h2>
-      <div class="grid grid-cols-2 gap-4 text-white-700">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-white-700">
         <!-- Desarrollo Web -->
         <div>
           <h3 class="font-semibold text-secondary-color">Desarrollo Web</h3>
@@ -194,47 +267,75 @@
       </div>
     </section>
     <section class="mb-12">
-  <h2 class="text-2xl font-semibold text-white-800 text-center">Habilidades Representadas</h2>
-  <div class="grid grid-cols-6 gap-4 justify-items-center mt-6" id="skills-icons">
-    <img alt="C" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" title="C" class="skill-icon" />
-    <img alt="C++" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" title="C++" class="skill-icon" />
-    <img alt="C#" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" title="C#" class="skill-icon" />
-    <img alt="Java" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" title="Java" class="skill-icon" />
-    <img alt="Python" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" title="Python" class="skill-icon" />
-    <img alt="JavaScript" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" title="JavaScript" class="skill-icon" />
-    <img alt="TypeScript" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" title="TypeScript" class="skill-icon" />
-    <img alt="Node.js" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" title="Node.js" class="skill-icon" />
-    <img alt="React" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" title="React" class="skill-icon" />
-    <img alt="React Native" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" title="React Native" class="skill-icon" />
-    <img alt="MongoDB" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" title="MongoDB" class="skill-icon" />
-    <img alt="MySQL" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" title="MySQL" class="skill-icon" />
-    <img alt="Firebase" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/firebase/firebase-original.svg" title="Firebase" class="skill-icon" />
-    <img alt="Git" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" title="Git" class="skill-icon" />
-    <img alt="GitHub" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" title="GitHub" class="skill-icon" />
-    <img alt="Docker" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" title="Docker" class="skill-icon" />
-    <img alt="WordPress" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/wordpress/wordpress-original.svg" title="WordPress" class="skill-icon" />
-    <img alt="VS Code" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" title="VS Code" class="skill-icon" />
-    <img alt="HTML5" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" title="HTML5" class="skill-icon" />
-    <img alt="CSS3" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" title="CSS3" class="skill-icon" />
-  </div>
+      <h2 class="text-2xl font-semibold text-white-800 text-center">Habilidades Representadas</h2>
+      <div class="grid grid-cols-4 sm:grid-cols-6 gap-4 justify-items-center mt-6" id="skills-icons">
+        <img alt="C" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
+          title="C" class="skill-icon" />
+        <img alt="C++"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
+          title="C++" class="skill-icon" />
+        <img alt="C#"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" title="C#"
+          class="skill-icon" />
+        <img alt="Java"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" title="Java"
+          class="skill-icon" />
+        <img alt="Python"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+          title="Python" class="skill-icon" />
+        <img alt="JavaScript"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+          title="JavaScript" class="skill-icon" />
+        <img alt="TypeScript"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
+          title="TypeScript" class="skill-icon" />
+        <img alt="Node.js"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
+          title="Node.js" class="skill-icon" />
+        <img alt="React"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" title="React"
+          class="skill-icon" />
+        <img alt="React Native"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
+          title="React Native" class="skill-icon" />
+        <img alt="MongoDB"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg"
+          title="MongoDB" class="skill-icon" />
+        <img alt="MySQL"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" title="MySQL"
+          class="skill-icon" />
+        <img alt="Firebase"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/firebase/firebase-original.svg"
+          title="Firebase" class="skill-icon" />
+        <img alt="Git"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" title="Git"
+          class="skill-icon" />
+        <img alt="GitHub"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg"
+          title="GitHub" class="skill-icon" />
+        <img alt="Docker"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg"
+          title="Docker" class="skill-icon" />
+        <img alt="WordPress"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/wordpress/wordpress-original.svg"
+          title="WordPress" class="skill-icon" />
+        <img alt="VS Code"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg"
+          title="VS Code" class="skill-icon" />
+        <img alt="HTML5"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" title="HTML5"
+          class="skill-icon" />
+        <img alt="CSS3"
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" title="CSS3"
+          class="skill-icon" />
+      </div>
+    </section>
 
-  <!-- Estilos para los iconos -->
-  <style>
-    .skill-icon {
-      transition: transform 0.3s ease; /* Suaviza la animación */
-    }
-
-    .skill-icon:hover {
-      transform: scale(1.5); /* Aumenta el tamaño del icono al pasar el cursor */
-    }
-  </style>
-</section>
-
-    <hr style="border: 1px solid rgb(255, 255, 255); margin: 20px 0;" />
+    <hr />
     <section class="mb-12" id="experiencia">
       <h2 class="text-2xl font-semibold text-white-800">Experiencia Laboral</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-white-700">
-        
+
         <div>
           <h3 class="font-semibold text-white">Febrero 2025 a Vigente 2025 · Auxiliar de Soporte</h3>
           <p class="text-white">CFS CLIENT FIRST SERVICES · Bogotá D.C</p>
@@ -249,7 +350,7 @@
             <li>Compromiso con la calidad en la atención y resolución de problemas.</li>
           </ul>
         </div>
-        
+
 
         <div>
           <h3 class="font-semibold text-white">Octubre 2023 a Abril 2024 · Agente Mesa de Servicio</h3>
@@ -265,7 +366,7 @@
             <li>Compromiso con la calidad en la atención y resolución de problemas.</li>
           </ul>
         </div>
-        
+
 
         <!-- ATENTO COLOMBIA -->
         <div>
@@ -273,16 +374,20 @@
           <p class="text-white">ATENTO COLOMBIA · Bogotá D.C</p>
           <h4 class="font-semibold text-white mt-2">Labores realizadas:</h4>
           <ul class="list-disc list-inside text-white">
-            <li>Atención y soporte a clientes vía telefónica, resolviendo dudas e inconvenientes de manera eficiente.</li>
-            <li>Gestión de solicitudes, reclamos y seguimiento de casos para garantizar la satisfacción del cliente.</li>
+            <li>Atención y soporte a clientes vía telefónica, resolviendo dudas e inconvenientes de manera eficiente.
+            </li>
+            <li>Gestión de solicitudes, reclamos y seguimiento de casos para garantizar la satisfacción del cliente.
+            </li>
             <li>Registro y actualización de información en el sistema de gestión de clientes.</li>
             <li>Manejo de herramientas y software de atención al cliente para optimizar tiempos de respuesta.</li>
-            <li>Aplicación de protocolos de servicio y comunicación efectiva para mejorar la experiencia del usuario.</li>
+            <li>Aplicación de protocolos de servicio y comunicación efectiva para mejorar la experiencia del usuario.
+            </li>
             <li>Trabajo en equipo con otras áreas para la resolución de problemas y mejora de procesos.</li>
-            <li>Cumplimiento de indicadores de desempeño como tiempo de atención, satisfacción y resolución en primer contacto.</li>
+            <li>Cumplimiento de indicadores de desempeño como tiempo de atención, satisfacción y resolución en primer
+              contacto.</li>
           </ul>
         </div>
-        
+
         <!-- DATA TOOLS S.A.S -->
         <div>
           <h3 class="font-semibold text-white">Enero 2021 a Julio 2022 · Analista de Datos</h3>
@@ -301,24 +406,24 @@
             <li>Redacción de actas de reuniones y seguimiento de acuerdos.</li>
           </ul>
         </div>
-        
 
-      <div class="mt-6">
-        <p class="text-white-700 text-lg font-semibold flex items-center">
-          <i class="fas fa-building text-primary-color mr-2"></i> Clientes destacados:
-        </p>
-        <ul class="list-disc list-inside text-white-600 mt-2">
-          <li><strong>IBM</strong> - soluciones empresariales.</li>
-          <li><strong>Lenovo</strong> - soporte de hardware y software.</li>
-          <li><strong>HP</strong> - Implementación de soluciones TI personalizadas.</li>
-          <li><strong>Fiducia</strong> - Gestión de sistemas tecnológicos.</li>
-          <li><strong>Stefanini</strong> - Soporte en sitio</li>
-          <li><strong>Almaviva</strong> - Optimización de Equipos y tecnológicos.</li>
-          <li><strong>Banco Bogotá</strong> - Soporte técnico de sistemas bancarios.</li>
-        </ul>
-      </div>
+
+        <div class="mt-6 md:col-span-2">
+          <p class="text-white-700 text-lg font-semibold flex items-center">
+            <i class="fas fa-building text-primary-color mr-2"></i> Clientes destacados:
+          </p>
+          <ul class="list-disc list-inside text-white-600 mt-2">
+            <li><strong>IBM</strong> - soluciones empresariales.</li>
+            <li><strong>Lenovo</strong> - soporte de hardware y software.</li>
+            <li><strong>HP</strong> - Implementación de soluciones TI personalizadas.</li>
+            <li><strong>Fiducia</strong> - Gestión de sistemas tecnológicos.</li>
+            <li><strong>Stefanini</strong> - Soporte en sitio</li>
+            <li><strong>Almaviva</strong> - Optimización de Equipos y tecnológicos.</li>
+            <li><strong>Banco Bogotá</strong> - Soporte técnico de sistemas bancarios.</li>
+          </ul>
+        </div>
     </section>
-    <hr style="border: 1px solid rgb(255, 255, 255); margin: 20px 0;" />
+    <hr />
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Educación Superior</h2>
       <div class="text-white-700 mt-4">
@@ -328,7 +433,7 @@
         <p><strong>Bogotá D.C</strong></p>
       </div>
     </section>
-    <hr style="border: 1px solid rgb(255, 255, 255); margin: 20px 0;" />
+    <hr />
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Cursos</h2>
       <ul class="list-disc list-inside text-white-700">
@@ -338,29 +443,29 @@
         <li>Algoritmos y Estructura de Datos con JavaScript/Freecodecamp</li>
       </ul>
     </section>
-    <hr style="border: 1px solid rgb(255, 255, 255); margin: 20px 0;" />
+    <hr />
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Idiomas</h2>
       <p class="text-white-700">Español (Nativo) · Inglés (Intermedio)</p>
     </section>
-    <hr style="border: 1px solid rgb(255, 255, 255); margin: 20px 0;" />
+    <hr />
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Herramientas Ofimáticas</h2>
       <p class="text-white-700">Excel, PowerPoint, Word, Teams, Access, Outlook, Gmail, Google Docs, Forms, Drive</p>
     </section>
-    <hr style="border: 1px solid rgb(255, 255, 255); margin: 20px 0;" />
+    <hr />
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Reconocimientos</h2>
       <p class="text-white-700">Sensibilización y Motivación en Emprendimiento (SENA, 2016)</p>
     </section>
-    <hr style="border: 1px solid rgb(255, 255, 255); margin: 20px 0;" />
+    <hr />
     <section id="proyectos" class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Proyectos</h2>
       <ul class="list-disc list-inside text-blue-700">
         <li><a href="https://github.com/edwinpantojab" target="_blank">Repositorio de proyectos en GitHub</a></li>
       </ul>
     </section>
-    <hr style="border: 1px solid rgb(255, 255, 255); margin: 20px 0;" />
+    <hr />
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Referencias Personales</h2>
       <ul class="list-disc list-inside text-white-700">
@@ -368,7 +473,7 @@
         <li>Johana Varela · (314) 330 4531 · varela.ij@gmail.com</li>
       </ul>
     </section>
-    <hr style="border: 1px solid rgb(255, 255, 255); margin: 20px 0;" />
+    <hr />
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Referencias Laborales</h2>
       <ul class="list-disc list-inside text-white-700">
@@ -376,7 +481,7 @@
         <li>Yuleny Suns · (315) 227 0193 · yulenycastaneda@cfs.com.co</li>
       </ul>
     </section>
-    <hr style="border: 1px solid rgb(255, 255, 255); margin: 20px 0;" />
+    <hr />
     <section id="contacto" class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">📞 Contacto</h2>
       <div class="mt-4 text-white-700">
@@ -399,7 +504,8 @@
           <!-- LinkedIn -->
           <li class="flex items-center">
             <i class="fab fa-linkedin text-primary-color mr-2"></i>
-            <a href="https://www.linkedin.com/in/edwin-pantoja-bustos-07233b264/" target="_blank" class="hover:underline">
+            <a href="https://www.linkedin.com/in/edwin-pantoja-bustos-07233b264/" target="_blank"
+              class="hover:underline">
               🔗 LinkedIn/https://www.linkedin.com/in/edwin-pantoja-bustos-07233b264/
             </a>
           </li>
@@ -425,13 +531,44 @@
     <p>&copy; 2025 CV/E P B — Todos los derechos reservados</p>
     <p>Construyendo el futuro, una línea de código a la vez.</p>
   </footer>
-<script>
-    // Toggle mobile menu
-    function toggleMenu() {
-      const menu = document.getElementById('mobile-menu');
+  
+  <script>
+    // Variables para controlar el scroll
+    let lastScroll = 0;
+    const navbar = document.getElementById('navbar');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    
+    // Función para manejar el scroll
+    function handleScroll() {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll <= 0) {
+        // Estamos en la parte superior de la página
+        navbar.classList.remove('hidden');
+        return;
+      }
+      
+      if (currentScroll > lastScroll && !navbar.classList.contains('hidden')) {
+        // Scroll hacia abajo - ocultar barra
+        navbar.classList.add('hidden');
+      } else if (currentScroll < lastScroll && navbar.classList.contains('hidden')) {
+        // Scroll hacia arriba - mostrar barra
+        navbar.classList.remove('hidden');
+      }
+      
+      lastScroll = currentScroll;
+    }
+    
+    // Menú móvil
+    function toggleMobileMenu() {
+      const menu = document.querySelector('nav div');
       menu.classList.toggle('hidden');
     }
-
+    
+    // Event listeners
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    mobileMenuButton.addEventListener('click', toggleMobileMenu);
+    
     // Canvas animation
     const canvas = document.getElementById('stars');
     const ctx = canvas.getContext('2d');
@@ -533,6 +670,6 @@
 
     drawVortex();
   </script>
-  <script src="scripts.js"></script>
 </body>
+
 </html>

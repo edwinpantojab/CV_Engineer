@@ -72,3 +72,24 @@ function drawStars() {
 }
 
 drawStars();
+
+const navbar = document.getElementById('navbar');
+let lastScrollY = window.scrollY;
+
+// Detectar el scroll y ocultar/mostrar el menú
+window.addEventListener('scroll', () => {
+  if (window.scrollY > lastScrollY) {
+    // Ocultar el menú cuando el usuario hace scroll hacia abajo
+    navbar.style.transform = 'translateY(-100%)';
+  } else {
+    // Mostrar el menú cuando el usuario hace scroll hacia arriba
+    navbar.style.transform = 'translateY(0)';
+  }
+  lastScrollY = window.scrollY;
+});
+
+// Función para alternar el menú en dispositivos móviles
+function toggleMenu() {
+  const menu = document.querySelector('#navbar .container');
+  menu.classList.toggle('hidden');
+}

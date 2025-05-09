@@ -241,3 +241,8 @@ hr {
   border: 1px solid #ffffff;
   margin: 20px 0;
 }
+
+
+  #navbar {
+    transition: transform 0.3s ease-in-out;
+  }
