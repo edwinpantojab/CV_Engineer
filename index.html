@@ -15,122 +15,16 @@
   <meta name="keywords" content="Ingeniero de Sistemas, Programador, Desarrollo Web, Soporte Técnico, Bases de Datos" />
 </head>
 
-<style>
-  #stars {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-  }
-
-  nav {
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0.9));
-    backdrop-filter: blur(5px);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  nav.hidden {
-    transform: translateY(-100%);
-  }
-
-  main {
-    background: rgba(18, 28, 53, 0.85);
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.5);
-  }
-
-  h1,
-  h2,
-  h3,
-  p,
-  li {
-    color: #e5e7eb;
-  }
-
-  a {
-    transition: color 0.3s ease;
-  }
-
-  a:hover {
-    color: #60a5fa;
-  }
-
-  hr {
-    border: 1px solid #ffffff;
-    margin: 20px 0;
-  }
-
-  footer {
-    background: linear-gradient(to right, #ffffff, #000000, #ffffff);
-  }
-
-  /* Estilos responsivos para imágenes */
-  .skill-icon {
-    width: 30px;
-    height: 30px;
-    transition: transform 0.3s ease;
-  }
-
-  @media (max-width: 640px) {
-    .skill-icon {
-      width: 24px;
-      height: 24px;
-    }
-    
-    #skills-icons {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-
-  .skill-icon:hover {
-    transform: scale(1.5);
-  }
-
-  .icon i {
-    transition: transform 0.3s ease;
-  }
-
-  .icon:hover i {
-    transform: scale(1.5);
-  }
-
-  /* Mejoras de responsividad para el contenido */
-  @media (max-width: 768px) {
-    main {
-      padding: 1rem;
-      margin-top: 80px; /* Espacio para la barra de navegación */
-    }
-    
-    .grid-cols-2, .grid-cols-6 {
-      grid-template-columns: 1fr;
-    }
-    
-    #social-icons {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
-    nav div {
-      padding: 0.5rem;
-    }
-    
-    nav a {
-      font-size: 0.9rem;
-      padding: 0.25rem 0.5rem;
-    }
-  }
-</style>
+<!-- ...en tu archivo index.html, en el <head>... -->
+<link rel="stylesheet" href="styles.css">
 
 <body class="antialiased bg-white-100">
   <canvas id="stars"></canvas>
 
   <!-- Navegación -->
   <nav id="navbar" class="fixed top-0 left-0 w-full z-50">
-    <div class="container mx-auto px-4 py-3 flex flex-col items-center justify-center space-y-2">
-      <div class="flex space-x-4 md:space-x-6 justify-center text-black font-bold">
+    <div class="container mx-auto px-2 sm:px-4 py-2 sm:py-3 flex items-center justify-between">
+      <div class="hidden sm:flex space-x-6 font-bold w-full justify-center">
         <a href="#inicio" class="hover:underline px-2 py-1">Inicio</a>
         <a href="#sobre-mi" class="hover:underline px-2 py-1">Sobre Mí</a>
         <a href="#habilidades" class="hover:underline px-2 py-1">Habilidades</a>
@@ -138,18 +32,31 @@
         <a href="#proyectos" class="hover:underline px-2 py-1">Proyectos</a>
         <a href="#contacto" class="hover:underline px-2 py-1">Contacto</a>
       </div>
-      <button class="block md:hidden text-white" id="mobile-menu-button">
+      <!-- Botón hamburguesa solo en móvil -->
+      <button class="sm:hidden text-white text-3xl" id="mobile-menu-button" aria-label="Abrir menú">
         <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <!-- Menú móvil -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-95 flex flex-col items-center justify-center space-y-8 text-white text-2xl font-bold z-50 hidden">
+      <a href="#inicio" class="w-full text-center py-2 hover:text-blue-400 transition" onclick="closeMobileMenu()">Inicio</a>
+      <a href="#sobre-mi" class="w-full text-center py-2 hover:text-blue-400 transition" onclick="closeMobileMenu()">Sobre Mí</a>
+      <a href="#habilidades" class="w-full text-center py-2 hover:text-blue-400 transition" onclick="closeMobileMenu()">Habilidades</a>
+      <a href="#experiencia" class="w-full text-center py-2 hover:text-blue-400 transition" onclick="closeMobileMenu()">Experiencia</a>
+      <a href="#proyectos" class="w-full text-center py-2 hover:text-blue-400 transition" onclick="closeMobileMenu()">Proyectos</a>
+      <a href="#contacto" class="w-full text-center py-2 hover:text-blue-400 transition" onclick="closeMobileMenu()">Contacto</a>
+      <button onclick="closeMobileMenu()" class="mt-8 text-4xl" aria-label="Cerrar menú">
+        <i class="fas fa-times"></i>
       </button>
     </div>
   </nav>
 
   <!-- Contenido principal -->
-  <main id="inicio" class="container mx-auto px-4 py-20 max-w-5xl">
+  <main id="inicio" class="container mx-auto px-2 sm:px-4 py-8 sm:py-20 max-w-5xl w-full">
     <header class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold text-white">Edwin Pantoja Bustos</h1>
-      <p class="text-xl md:text-2xl text-white-600">👨‍💻 Ingeniero de Sistemas y Programador</p>
-      <div class="mt-4 flex justify-center space-x-6 text-blue-700" id="social-icons">
+      <h1 class="text-4xl md:text-5xl font-bold">Edwin Pantoja Bustos</h1>
+      <p class="text-xl md:text-2xl">👨‍💻 Ingeniero de Sistemas y Programador</p>
+      <div class="mt-4 flex justify-center space-x-6" id="social-icons">
         <a href="mailto:edwinpantoja2015@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
         <a href="tel:+573233932071" class="icon"><i class="fas fa-phone"></i></a>
         <a href="https://github.com/edwinpantojab" target="_blank" class="icon"><i class="fab fa-github"></i></a>
@@ -158,7 +65,7 @@
       </div>
     </header>
 
-    <hr />
+
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white">Perfil</h2>
       <p class="mt-2 leading-relaxed text-white">
@@ -175,7 +82,7 @@
         eficientes que contribuyan al crecimiento de las organizaciones mediante el uso estratégico de la tecnología.
       </p>
     </section>
-    <hr />
+
     <section id="sobre-mi" class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Sobre Mí</h2>
       <p class="mt-2 text-white-700 leading-relaxed">
@@ -196,8 +103,8 @@
         tecnología.
       </p>
     </section>
-    <hr />
-    <section class="mb-12">
+
+    <section id="habilidades" class="mb-12">
       <h2 class="text-2xl font-semibold text-primary-color">Habilidades Técnicas</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-white-700">
         <!-- Desarrollo Web -->
@@ -268,74 +175,75 @@
     </section>
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800 text-center">Habilidades Representadas</h2>
-      <div class="grid grid-cols-4 sm:grid-cols-6 gap-4 justify-items-center mt-6" id="skills-icons">
-        <img alt="C" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
-          title="C" class="skill-icon" />
-        <img alt="C++"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
-          title="C++" class="skill-icon" />
-        <img alt="C#"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" title="C#"
-          class="skill-icon" />
-        <img alt="Java"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" title="Java"
-          class="skill-icon" />
-        <img alt="Python"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
-          title="Python" class="skill-icon" />
-        <img alt="JavaScript"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
-          title="JavaScript" class="skill-icon" />
-        <img alt="TypeScript"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
-          title="TypeScript" class="skill-icon" />
-        <img alt="Node.js"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
-          title="Node.js" class="skill-icon" />
-        <img alt="React"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" title="React"
-          class="skill-icon" />
-        <img alt="React Native"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
-          title="React Native" class="skill-icon" />
-        <img alt="MongoDB"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg"
-          title="MongoDB" class="skill-icon" />
-        <img alt="MySQL"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" title="MySQL"
-          class="skill-icon" />
-        <img alt="Firebase"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/firebase/firebase-original.svg"
-          title="Firebase" class="skill-icon" />
-        <img alt="Git"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" title="Git"
-          class="skill-icon" />
-        <img alt="GitHub"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg"
-          title="GitHub" class="skill-icon" />
-        <img alt="Docker"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg"
-          title="Docker" class="skill-icon" />
-        <img alt="WordPress"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/wordpress/wordpress-original.svg"
-          title="WordPress" class="skill-icon" />
-        <img alt="VS Code"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg"
-          title="VS Code" class="skill-icon" />
-        <img alt="HTML5"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" title="HTML5"
-          class="skill-icon" />
-        <img alt="CSS3"
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" title="CSS3"
-          class="skill-icon" />
+      <div class="overflow-x-auto">
+        <div class="grid grid-cols-4 sm:grid-cols-6 gap-4 justify-items-center mt-6" id="skills-icons">
+          <img alt="C" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
+            title="C" class="skill-icon" />
+          <img alt="C++"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
+            title="C++" class="skill-icon" />
+          <img alt="C#"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" title="C#"
+            class="skill-icon" />
+          <img alt="Java"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" title="Java"
+            class="skill-icon" />
+          <img alt="Python"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+            title="Python" class="skill-icon" />
+          <img alt="JavaScript"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+            title="JavaScript" class="skill-icon" />
+          <img alt="TypeScript"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
+            title="TypeScript" class="skill-icon" />
+          <img alt="Node.js"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
+            title="Node.js" class="skill-icon" />
+          <img alt="React"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" title="React"
+            class="skill-icon" />
+          <img alt="React Native"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
+            title="React Native" class="skill-icon" />
+          <img alt="MongoDB"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg"
+            title="MongoDB" class="skill-icon" />
+          <img alt="MySQL"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" title="MySQL"
+            class="skill-icon" />
+          <img alt="Firebase"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/firebase/firebase-original.svg"
+            title="Firebase" class="skill-icon" />
+          <img alt="Git"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" title="Git"
+            class="skill-icon" />
+          <img alt="GitHub"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg"
+            title="GitHub" class="skill-icon" />
+          <img alt="Docker"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg"
+            title="Docker" class="skill-icon" />
+          <img alt="WordPress"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/wordpress/wordpress-original.svg"
+            title="WordPress" class="skill-icon" />
+          <img alt="VS Code"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg"
+            title="VS Code" class="skill-icon" />
+          <img alt="HTML5"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" title="HTML5"
+            class="skill-icon" />
+          <img alt="CSS3"
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" title="CSS3"
+            class="skill-icon" />
+        </div>
       </div>
     </section>
 
-    <hr />
+
     <section class="mb-12" id="experiencia">
       <h2 class="text-2xl font-semibold text-white-800">Experiencia Laboral</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-white-700">
-
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <h3 class="font-semibold text-white">Febrero 2025 a Vigente 2025 · Auxiliar de Soporte</h3>
           <p class="text-white">CFS CLIENT FIRST SERVICES · Bogotá D.C</p>
@@ -423,7 +331,7 @@
           </ul>
         </div>
     </section>
-    <hr />
+
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Educación Superior</h2>
       <div class="text-white-700 mt-4">
@@ -433,7 +341,7 @@
         <p><strong>Bogotá D.C</strong></p>
       </div>
     </section>
-    <hr />
+
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Cursos</h2>
       <ul class="list-disc list-inside text-white-700">
@@ -443,29 +351,29 @@
         <li>Algoritmos y Estructura de Datos con JavaScript/Freecodecamp</li>
       </ul>
     </section>
-    <hr />
+
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Idiomas</h2>
       <p class="text-white-700">Español (Nativo) · Inglés (Intermedio)</p>
     </section>
-    <hr />
+
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Herramientas Ofimáticas</h2>
       <p class="text-white-700">Excel, PowerPoint, Word, Teams, Access, Outlook, Gmail, Google Docs, Forms, Drive</p>
     </section>
-    <hr />
+
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Reconocimientos</h2>
       <p class="text-white-700">Sensibilización y Motivación en Emprendimiento (SENA, 2016)</p>
     </section>
-    <hr />
+
     <section id="proyectos" class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Proyectos</h2>
       <ul class="list-disc list-inside text-blue-700">
         <li><a href="https://github.com/edwinpantojab" target="_blank">Repositorio de proyectos en GitHub</a></li>
       </ul>
     </section>
-    <hr />
+
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Referencias Personales</h2>
       <ul class="list-disc list-inside text-white-700">
@@ -473,7 +381,7 @@
         <li>Johana Varela · (314) 330 4531 · varela.ij@gmail.com</li>
       </ul>
     </section>
-    <hr />
+
     <section class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">Referencias Laborales</h2>
       <ul class="list-disc list-inside text-white-700">
@@ -481,7 +389,7 @@
         <li>Yuleny Suns · (315) 227 0193 · yulenycastaneda@cfs.com.co</li>
       </ul>
     </section>
-    <hr />
+
     <section id="contacto" class="mb-12">
       <h2 class="text-2xl font-semibold text-white-800">📞 Contacto</h2>
       <div class="mt-4 text-white-700">
@@ -489,12 +397,12 @@
           <!-- Teléfono -->
           <li class="flex items-center">
             <i class="fas fa-phone text-primary-color mr-2"></i>
-            <span>📱 (+57) 323-393-2071</span>
+            <span>(+57) 323-393-2071</span>
           </li>
           <!-- Correo 1 -->
           <li class="flex items-center">
             <i class="fas fa-envelope text-primary-color mr-2"></i>
-            <a href="mailto:edwinpantoja2015@gmail.com" class="hover:underline">📧 edwinpantoja2015@gmail.com</a>
+            <a href="mailto:edwinpantoja2015@gmail.com" class="hover:underline">edwinpantoja2015@gmail.com</a>
           </li>
           <!-- Correo 2 -->
           <li class="flex items-center">
@@ -506,7 +414,7 @@
             <i class="fab fa-linkedin text-primary-color mr-2"></i>
             <a href="https://www.linkedin.com/in/edwin-pantoja-bustos-07233b264/" target="_blank"
               class="hover:underline">
-              🔗 LinkedIn/https://www.linkedin.com/in/edwin-pantoja-bustos-07233b264/
+              LinkedIn/https://www.linkedin.com/in/edwin-pantoja-bustos-07233b264/
             </a>
           </li>
           <!-- GitHub -->
@@ -526,150 +434,18 @@
     </section>
   </main>
 
+  <!-- Flecha para volver arriba -->
+  <button id="scrollTopBtn" title="Volver arriba">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
   <!-- Footer -->
-  <footer class="text-center text-sm bg-black-800 text-black py-6">
+  <footer class="text-center text-sm py-6">
     <p>&copy; 2025 CV/E P B — Todos los derechos reservados</p>
     <p>Construyendo el futuro, una línea de código a la vez.</p>
   </footer>
   
-  <script>
-    // Variables para controlar el scroll
-    let lastScroll = 0;
-    const navbar = document.getElementById('navbar');
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    
-    // Función para manejar el scroll
-    function handleScroll() {
-      const currentScroll = window.pageYOffset;
-      
-      if (currentScroll <= 0) {
-        // Estamos en la parte superior de la página
-        navbar.classList.remove('hidden');
-        return;
-      }
-      
-      if (currentScroll > lastScroll && !navbar.classList.contains('hidden')) {
-        // Scroll hacia abajo - ocultar barra
-        navbar.classList.add('hidden');
-      } else if (currentScroll < lastScroll && navbar.classList.contains('hidden')) {
-        // Scroll hacia arriba - mostrar barra
-        navbar.classList.remove('hidden');
-      }
-      
-      lastScroll = currentScroll;
-    }
-    
-    // Menú móvil
-    function toggleMobileMenu() {
-      const menu = document.querySelector('nav div');
-      menu.classList.toggle('hidden');
-    }
-    
-    // Event listeners
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    mobileMenuButton.addEventListener('click', toggleMobileMenu);
-    
-    // Canvas animation
-    const canvas = document.getElementById('stars');
-    const ctx = canvas.getContext('2d');
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    // Stars
-    const stars = Array(150).fill().map(() => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      radius: Math.random() * 1.2 + 0.5,
-      alpha: Math.random(),
-      speed: Math.random() * 0.015 + 0.005,
-    }));
-
-    // Vortex parameters
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    let rotationAngle = 0;
-    const maxRadius = Math.min(canvas.width, canvas.height) * 0.4;
-    const particles = Array(600).fill().map(() => {
-      const theta = Math.random() * 2 * Math.PI;
-      const r = Math.random() * maxRadius;
-      return {
-        theta: theta,
-        r: r,
-        speed: Math.random() * 0.03 + 0.01,
-        alpha: Math.random() * 0.5 + 0.5,
-      };
-    });
-
-    function drawVortex() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Background
-      const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, maxRadius * 2);
-      gradient.addColorStop(0, '#0a0a23');
-      gradient.addColorStop(0.5, '#1a1a3d');
-      gradient.addColorStop(1, '#2a2a5a');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Draw vortex
-      particles.forEach(p => {
-        p.theta += p.speed * 0.02;
-        const r = p.r * (1 + Math.sin(p.theta * 0.8) * 0.3);
-        const x = centerX + r * Math.cos(p.theta + rotationAngle);
-        const y = centerY + r * Math.sin(p.theta + rotationAngle);
-        const distFromCenter = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
-        const colorGradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, maxRadius);
-        colorGradient.addColorStop(0, `rgba(135, 206, 250, ${p.alpha})`); // Light blue center
-        colorGradient.addColorStop(0.5, `rgba(70, 130, 180, ${p.alpha * 0.8})`); // Steel blue transition
-        colorGradient.addColorStop(1, `rgba(25, 25, 112, ${p.alpha * 0.5})`); // Midnight blue outer
-        ctx.beginPath();
-        ctx.arc(x, y, 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = colorGradient;
-        ctx.fill();
-      });
-
-      // Glowing center
-      const glowGradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, maxRadius * 0.3);
-      glowGradient.addColorStop(0, 'rgba(135, 206, 250, 0.9)');
-      glowGradient.addColorStop(1, 'rgba(70, 130, 180, 0)');
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, maxRadius * 0.3, 0, Math.PI * 2);
-      ctx.fillStyle = glowGradient;
-      ctx.fill();
-
-      // Draw stars
-      stars.forEach(star => {
-        star.alpha += star.speed;
-        if (star.alpha > 1 || star.alpha < 0.2) star.speed *= -1;
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
-        ctx.fill();
-      });
-
-      // Draw moon-like element
-      const moonX = canvas.width * 0.9;
-      const moonY = canvas.height * 0.1;
-      ctx.beginPath();
-      ctx.arc(moonX, moonY, 15, 0, Math.PI * 2);
-      ctx.fillStyle = '#ffffff';
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(moonX + 5, moonY, 15, 0, Math.PI * 2);
-      ctx.fillStyle = '#0a0a23';
-      ctx.fill();
-
-      rotationAngle += 0.003;
-      requestAnimationFrame(drawVortex);
-    }
-
-    drawVortex();
-  </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
