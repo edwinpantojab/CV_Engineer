@@ -433,3 +433,24 @@ footer, footer * {
     margin-top: 2rem;
   }
 }
+
+@media (max-width: 480px) {
+  #mobile-menu nav {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  #mobile-menu nav a {
+    font-size: 1rem !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    border-radius: 0.5rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  #mobile-menu nav i {
+    font-size: 1.1rem !important;
+  }
+}

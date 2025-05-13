@@ -33,21 +33,37 @@
         <a href="#contacto" class="hover:underline px-2 py-1">Contacto</a>
       </div>
       <!-- Botón hamburguesa solo en móvil -->
-      <button class="sm:hidden text-white text-3xl" id="mobile-menu-button" aria-label="Abrir menú">
+      <button class="sm:hidden text-blue-600 text-3xl" id="mobile-menu-button" aria-label="Abrir menú">
         <i class="fas fa-bars"></i>
       </button>
     </div>
-    <!-- Menú móvil -->
-    <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-95 flex flex-col items-center justify-center space-y-8 text-white text-2xl font-bold z-50 hidden">
-      <a href="#inicio" class="w-full text-center py-2 hover:text-blue-400 transition" onclick="closeMobileMenu()">Inicio</a>
-      <a href="#sobre-mi" class="w-full text-center py-2 hover:text-blue-400 transition" onclick="closeMobileMenu()">Sobre Mí</a>
-      <a href="#habilidades" class="w-full text-center py-2 hover:text-blue-400 transition" onclick="closeMobileMenu()">Habilidades</a>
-      <a href="#experiencia" class="w-full text-center py-2 hover:text-blue-400 transition" onclick="closeMobileMenu()">Experiencia</a>
-      <a href="#proyectos" class="w-full text-center py-2 hover:text-blue-400 transition" onclick="closeMobileMenu()">Proyectos</a>
-      <a href="#contacto" class="w-full text-center py-2 hover:text-blue-400 transition" onclick="closeMobileMenu()">Contacto</a>
-      <button onclick="closeMobileMenu()" class="mt-8 text-4xl" aria-label="Cerrar menú">
-        <i class="fas fa-times"></i>
-      </button>
+    <!-- Menú móvil bonito y profesional -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white w-full h-full flex flex-col z-50 hidden">
+      <div class="flex justify-end p-4">
+        <button onclick="closeMobileMenu()" class="text-3xl text-gray-700" aria-label="Cerrar menú">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <nav class="flex-1 flex flex-col justify-center items-center overflow-y-auto w-full px-2 py-4 space-y-1">
+        <a href="#inicio" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-100 text-blue-700 font-medium text-base transition" onclick="closeMobileMenu()">
+          <i class="fas fa-home text-lg"></i> Inicio
+        </a>
+        <a href="#sobre-mi" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-100 text-blue-700 font-medium text-base transition" onclick="closeMobileMenu()">
+          <i class="fas fa-user text-lg"></i> Sobre Mí
+        </a>
+        <a href="#habilidades" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-100 text-blue-700 font-medium text-base transition" onclick="closeMobileMenu()">
+          <i class="fas fa-cogs text-lg"></i> Habilidades
+        </a>
+        <a href="#experiencia" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-100 text-blue-700 font-medium text-base transition" onclick="closeMobileMenu()">
+          <i class="fas fa-briefcase text-lg"></i> Experiencia
+        </a>
+        <a href="#proyectos" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-100 text-blue-700 font-medium text-base transition" onclick="closeMobileMenu()">
+          <i class="fas fa-project-diagram text-lg"></i> Proyectos
+        </a>
+        <a href="#contacto" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-100 text-blue-700 font-medium text-base transition" onclick="closeMobileMenu()">
+          <i class="fas fa-envelope text-lg"></i> Contacto
+        </a>
+      </nav>
     </div>
   </nav>
 
