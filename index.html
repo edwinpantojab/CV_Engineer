@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CV-Edwin Pantoja Bustos</title>
+  <title>CV - Edwin Pantoja Bustos</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -15,118 +15,92 @@
   <meta name="keywords" content="Ingeniero de Sistemas, Programador, Desarrollo Web, Soporte Técnico, Bases de Datos" />
 </head>
 
-<!-- ...en tu archivo index.html, en el <head>... -->
-<link rel="stylesheet" href="styles.css">
-
-<body class="antialiased bg-white-100">
+<body class="antialiased bg-gray-900 text-gray-100">
   <canvas id="stars"></canvas>
 
   <!-- Navegación -->
-  <nav id="navbar" class="fixed top-0 left-0 w-full z-50">
-    <div class="container mx-auto px-2 sm:px-4 py-2 sm:py-3 flex items-center justify-between">
-      <div class="hidden sm:flex space-x-6 font-bold w-full justify-center">
-        <a href="#inicio" class="hover:underline px-2 py-1">Inicio</a>
-        <a href="#sobre-mi" class="hover:underline px-2 py-1">Sobre Mí</a>
-        <a href="#habilidades" class="hover:underline px-2 py-1">Habilidades</a>
-        <a href="#experiencia" class="hover:underline px-2 py-1">Experiencia</a>
-        <a href="#proyectos" class="hover:underline px-2 py-1">Proyectos</a>
-        <a href="#contacto" class="hover:underline px-2 py-1">Contacto</a>
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+      <div class="text-xl font-bold text-white">
+        <a href="#inicio">Edwin Pantoja B.</a>
+      </div>
+      <div class="hidden sm:flex space-x-4">
+        <a href="#inicio" class="nav-link">Inicio</a>
+        <a href="#sobre-mi" class="nav-link">Sobre Mí</a>
+        <a href="#habilidades" class="nav-link">Habilidades</a>
+        <a href="#experiencia" class="nav-link">Experiencia</a>
+        <a href="#proyectos" class="nav-link">Proyectos</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
       </div>
       <!-- Botón hamburguesa solo en móvil -->
-      <button class="sm:hidden text-blue-600 text-3xl" id="mobile-menu-button" aria-label="Abrir menú">
+      <button class="sm:hidden text-gray-200 hover:text-white text-3xl" id="mobile-menu-button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
         <i class="fas fa-bars"></i>
       </button>
     </div>
-    <!-- Menú móvil bonito y profesional -->
-    <div id="mobile-menu" class="fixed inset-0 bg-white w-full h-full flex flex-col z-50 hidden">
-      <div class="flex justify-end p-4">
-        <button onclick="closeMobileMenu()" class="text-3xl text-gray-700" aria-label="Cerrar menú">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <nav class="flex-1 flex flex-col justify-center items-center overflow-y-auto w-full px-2 py-4 space-y-1">
-        <a href="#inicio" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-100 text-blue-700 font-medium text-base transition" onclick="closeMobileMenu()">
-          <i class="fas fa-home text-lg"></i> Inicio
-        </a>
-        <a href="#sobre-mi" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-100 text-blue-700 font-medium text-base transition" onclick="closeMobileMenu()">
-          <i class="fas fa-user text-lg"></i> Sobre Mí
-        </a>
-        <a href="#habilidades" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-100 text-blue-700 font-medium text-base transition" onclick="closeMobileMenu()">
-          <i class="fas fa-cogs text-lg"></i> Habilidades
-        </a>
-        <a href="#experiencia" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-100 text-blue-700 font-medium text-base transition" onclick="closeMobileMenu()">
-          <i class="fas fa-briefcase text-lg"></i> Experiencia
-        </a>
-        <a href="#proyectos" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-100 text-blue-700 font-medium text-base transition" onclick="closeMobileMenu()">
-          <i class="fas fa-project-diagram text-lg"></i> Proyectos
-        </a>
-        <a href="#contacto" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-100 text-blue-700 font-medium text-base transition" onclick="closeMobileMenu()">
-          <i class="fas fa-envelope text-lg"></i> Contacto
-        </a>
-      </nav>
-    </div>
   </nav>
 
+  <!-- Menú móvil -->
+  <div id="mobile-menu" class="fixed inset-0 bg-gray-900 bg-opacity-95 backdrop-blur-sm w-full h-full flex-col z-40 hidden" role="dialog" aria-modal="true">
+    <div class="flex justify-end p-6">
+      <button id="close-mobile-menu-button" class="text-4xl text-gray-300 hover:text-white" aria-label="Cerrar menú">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <nav class="flex-1 flex flex-col justify-center items-center space-y-3 px-4">
+      <a href="#inicio" class="mobile-nav-link"><i class="fas fa-home mr-3"></i>Inicio</a>
+      <a href="#sobre-mi" class="mobile-nav-link"><i class="fas fa-user mr-3"></i>Sobre Mí</a>
+      <a href="#habilidades" class="mobile-nav-link"><i class="fas fa-cogs mr-3"></i>Habilidades</a>
+      <a href="#experiencia" class="mobile-nav-link"><i class="fas fa-briefcase mr-3"></i>Experiencia</a>
+      <a href="#proyectos" class="mobile-nav-link"><i class="fas fa-project-diagram mr-3"></i>Proyectos</a>
+      <a href="#contacto" class="mobile-nav-link"><i class="fas fa-envelope mr-3"></i>Contacto</a>
+    </nav>
+  </div>
+
   <!-- Contenido principal -->
-  <main id="inicio" class="container mx-auto px-2 sm:px-4 py-8 sm:py-20 max-w-5xl w-full">
-    <header class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold">Edwin Pantoja Bustos</h1>
-      <p class="text-xl md:text-2xl">👨‍💻 Ingeniero de Sistemas y Programador</p>
-      <div class="mt-4 flex justify-center space-x-6" id="social-icons">
-        <a href="mailto:edwinpantoja2015@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
-        <a href="tel:+573233932071" class="icon"><i class="fas fa-phone"></i></a>
-        <a href="https://github.com/edwinpantojab" target="_blank" class="icon"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/edwin-pantoja-bustos-07233b264/" target="_blank" class="icon"><i
-            class="fab fa-linkedin"></i></a>
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-20 pt-24 md:pt-32 max-w-5xl w-full relative z-10">
+    <header id="inicio" class="text-center mb-16 scroll-mt-20">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white">Edwin Pantoja Bustos</h1>
+      <p class="text-xl md:text-2xl text-blue-400 mt-2">👨‍💻 Ingeniero de Sistemas y Programador</p>
+      <div class="mt-6 flex justify-center space-x-6" id="social-icons">
+        <a href="mailto:edwinpantoja2015@gmail.com" class="social-icon" aria-label="Enviar correo"><i class="fas fa-envelope"></i></a>
+        <a href="tel:+573233932071" class="social-icon" aria-label="Llamar por teléfono"><i class="fas fa-phone"></i></a>
+        <a href="https://github.com/edwinpantojab" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Perfil de GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/edwin-pantoja-bustos-07233b264/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Perfil de LinkedIn"><i class="fab fa-linkedin"></i></a>
       </div>
     </header>
 
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold text-white">Perfil</h2>
-      <p class="mt-2 leading-relaxed text-white">
-        👨‍🎓 Ingeniero de Sistemas en formación con una sólida base en desarrollo de software, programación y bases de
-        datos.
+    <section class="card mb-12 scroll-mt-20">
+      <h2 class="section-title">Perfil</h2>
+      <p class="section-text">
+        👨‍🎓 Ingeniero de Sistemas en formación con una sólida base en desarrollo de software, programación y bases de datos.
       </p>
-      <p class="mt-2 text-white-700 leading-relaxed">
-        💻 He trabajado en proyectos de desarrollo web, control de acceso y gestión de usuarios, utilizando tecnologías
-        modernas como C#, JavaScript y Firebase. Además, poseo habilidades en soporte técnico de primer y segundo nivel,
-        optimización de procesos tecnológicos y resolución de problemas complejos.
+      <p class="section-text">
+        💻 He trabajado en proyectos de desarrollo web, control de acceso y gestión de usuarios, utilizando tecnologías modernas como C#, JavaScript y Firebase. Además, poseo habilidades en soporte técnico de primer y segundo nivel, optimización de procesos tecnológicos y resolución de problemas complejos.
       </p>
-      <p class="mt-2 text-white-700 leading-relaxed">
-        🚀 Estoy comprometido con la excelencia y la calidad en cada proyecto, buscando siempre soluciones innovadoras y
-        eficientes que contribuyan al crecimiento de las organizaciones mediante el uso estratégico de la tecnología.
+      <p class="section-text">
+        🚀 Estoy comprometido con la excelencia y la calidad en cada proyecto, buscando siempre soluciones innovadoras y eficientes que contribuyan al crecimiento de las organizaciones mediante el uso estratégico de la tecnología.
       </p>
     </section>
 
-    <section id="sobre-mi" class="mb-12">
-      <h2 class="text-2xl font-semibold text-white-800">Sobre Mí</h2>
-      <p class="mt-2 text-white-700 leading-relaxed">
-        👨‍💻 Ingeniero de Sistemas en formación, con sólidos conocimientos en desarrollo web con WordPress,
-        programación, bases de datos y arquitectura de datos. Poseo experiencia en el análisis, diseño e implementación
-        de sistemas de información, aplicando principios de estructuras de datos como pilas, colas y listas. He
-        trabajado en proyectos de control de acceso, gestión de usuarios y mantenimiento de sistemas, utilizando
-        tecnologías como C#, Firebase y JavaScript.
+    <section id="sobre-mi" class="card mb-12 scroll-mt-20">
+      <h2 class="section-title">Sobre Mí</h2>
+      <p class="section-text">
+        👨‍💻 Ingeniero de Sistemas en formación, con sólidos conocimientos en desarrollo web con WordPress, programación, bases de datos y arquitectura de datos. Poseo experiencia en el análisis, diseño e implementación de sistemas de información, aplicando principios de estructuras de datos como pilas, colas y listas. He trabajado en proyectos de control de acceso, gestión de usuarios y mantenimiento de sistemas, utilizando tecnologías como C#, Firebase y JavaScript.
       </p>
-      <p class="mt-2 text-white-700 leading-relaxed">
-        🔧 Profesional apasionado por la tecnología y la resolución de problemas, con experiencia en soporte técnico de
-        primer y segundo nivel, optimización de procesos tecnológicos y desarrollo de software de calidad. Me destaco
-        por mi capacidad de análisis, creatividad y compromiso con la excelencia en cada proyecto.
+      <p class="section-text">
+        🔧 Profesional apasionado por la tecnología y la resolución de problemas, con experiencia en soporte técnico de primer y segundo nivel, optimización de procesos tecnológicos y desarrollo de software de calidad. Me destaco por mi capacidad de análisis, creatividad y compromiso con la excelencia en cada proyecto.
       </p>
-      <p class="mt-2 text-white-700 leading-relaxed">
-        🌟 Busco contribuir con soluciones innovadoras y eficientes en entornos tecnológicos desafiantes, aplicando mis
-        conocimientos y habilidades para el crecimiento de las organizaciones mediante el uso eficiente de la
-        tecnología.
+      <p class="section-text">
+        🌟 Busco contribuir con soluciones innovadoras y eficientes en entornos tecnológicos desafiantes, aplicando mis conocimientos y habilidades para el crecimiento de las organizaciones mediante el uso eficiente de la tecnología.
       </p>
     </section>
 
-    <section id="habilidades" class="mb-12">
-      <h2 class="text-2xl font-semibold text-primary-color">Habilidades Técnicas</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-white-700">
-        <!-- Desarrollo Web -->
+    <section id="habilidades" class="card mb-12 scroll-mt-20">
+      <h2 class="section-title">Habilidades Técnicas</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
         <div>
-          <h3 class="font-semibold text-secondary-color">Desarrollo Web</h3>
-          <ul class="list-disc list-inside">
+          <h3 class="subsection-title">Desarrollo Web</h3>
+          <ul class="list-disc list-inside section-text">
             <li>Desarrollo Full Stack (Frontend & Backend)</li>
             <li>HTML5, CSS3, TailwindCSS</li>
             <li>JavaScript (ES6+), TypeScript</li>
@@ -135,53 +109,43 @@
             <li>API Restful, WebSockets</li>
           </ul>
         </div>
-
-        <!-- Bases de Datos -->
         <div>
-          <h3 class="font-semibold text-white-800">Bases de Datos</h3>
-          <ul class="list-disc list-inside">
+          <h3 class="subsection-title">Bases de Datos</h3>
+          <ul class="list-disc list-inside section-text">
             <li>SQL Server, MySQL</li>
             <li>NoSQL: MongoDB, Firebase</li>
             <li>Optimización de consultas y modelos de datos</li>
             <li>Gestión de grandes volúmenes de datos (Big Data)</li>
           </ul>
         </div>
-
-        <!-- Lenguajes de Programación -->
         <div>
-          <h3 class="font-semibold text-white-800">Lenguajes de Programación</h3>
-          <ul class="list-disc list-inside">
+          <h3 class="subsection-title">Lenguajes de Programación</h3>
+          <ul class "list-disc list-inside section-text">
             <li>C#, Java, Python</li>
             <li>C++</li>
             <li>Desarrollo de software orientado a objetos (OOP)</li>
           </ul>
         </div>
-
-        <!-- Herramientas y Frameworks -->
         <div>
-          <h3 class="font-semibold text-white-800">Herramientas & Frameworks</h3>
-          <ul class="list-disc list-inside">
+          <h3 class="subsection-title">Herramientas & Frameworks</h3>
+          <ul class="list-disc list-inside section-text">
             <li>Git, GitHub, GitLab</li>
             <li>Visual Studio, VS Code</li>
             <li>Webpack, Babel</li>
             <li>React Native, Next.js</li>
           </ul>
         </div>
-
-        <!-- Seguridad & Optimización -->
         <div>
-          <h3 class="font-semibold text-white-800">Ciberseguridad & Optimización</h3>
-          <ul class="list-disc list-inside">
+          <h3 class="subsection-title">Ciberseguridad & Optimización</h3>
+          <ul class="list-disc list-inside section-text">
             <li>Prácticas de seguridad en el desarrollo de aplicaciones web</li>
             <li>Optimización de código y rendimiento</li>
             <li>Autenticación y autorización (OAuth, JWT)</li>
           </ul>
         </div>
-
-        <!-- Otras Habilidades -->
         <div>
-          <h3 class="font-semibold text-white-800">Otras Habilidades</h3>
-          <ul class="list-disc list-inside">
+          <h3 class="subsection-title">Otras Habilidades</h3>
+          <ul class="list-disc list-inside section-text">
             <li>WordPress, Desarrollo de temas y plugins</li>
             <li>Marketing Digital, Canva</li>
             <li>Gestión de proyectos con Scrum y Agile</li>
@@ -189,279 +153,302 @@
         </div>
       </div>
     </section>
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold text-white-800 text-center">Habilidades Representadas</h2>
+
+    <section class="card mb-12 scroll-mt-20">
+      <h2 class="section-title text-center">Habilidades Representadas</h2>
       <div class="overflow-x-auto">
-        <div class="grid grid-cols-4 sm:grid-cols-6 gap-4 justify-items-center mt-6" id="skills-icons">
-          <img alt="C" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
-            title="C" class="skill-icon" />
-          <img alt="C++"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
-            title="C++" class="skill-icon" />
-          <img alt="C#"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" title="C#"
-            class="skill-icon" />
-          <img alt="Java"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" title="Java"
-            class="skill-icon" />
-          <img alt="Python"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
-            title="Python" class="skill-icon" />
-          <img alt="JavaScript"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
-            title="JavaScript" class="skill-icon" />
-          <img alt="TypeScript"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
-            title="TypeScript" class="skill-icon" />
-          <img alt="Node.js"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
-            title="Node.js" class="skill-icon" />
-          <img alt="React"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" title="React"
-            class="skill-icon" />
-          <img alt="React Native"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
-            title="React Native" class="skill-icon" />
-          <img alt="MongoDB"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg"
-            title="MongoDB" class="skill-icon" />
-          <img alt="MySQL"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" title="MySQL"
-            class="skill-icon" />
-          <img alt="Firebase"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/firebase/firebase-original.svg"
-            title="Firebase" class="skill-icon" />
-          <img alt="Git"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" title="Git"
-            class="skill-icon" />
-          <img alt="GitHub"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg"
-            title="GitHub" class="skill-icon" />
-          <img alt="Docker"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg"
-            title="Docker" class="skill-icon" />
-          <img alt="WordPress"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/wordpress/wordpress-original.svg"
-            title="WordPress" class="skill-icon" />
-          <img alt="VS Code"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg"
-            title="VS Code" class="skill-icon" />
-          <img alt="HTML5"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" title="HTML5"
-            class="skill-icon" />
-          <img alt="CSS3"
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" title="CSS3"
-            class="skill-icon" />
+        <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-10 gap-4 justify-items-center mt-6" id="skills-icons">
+          <img alt="C" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" title="C" class="skill-icon" />
+          <img alt="C++" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" title="C++" class="skill-icon" />
+          <img alt="C#" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" title="C#" class="skill-icon" />
+          <img alt="Java" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" title="Java" class="skill-icon" />
+          <img alt="Python" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" title="Python" class="skill-icon" />
+          <img alt="JavaScript" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" title="JavaScript" class="skill-icon" />
+          <img alt="TypeScript" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" title="TypeScript" class="skill-icon" />
+          <img alt="Node.js" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" title="Node.js" class="skill-icon" />
+          <img alt="React" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" title="React" class="skill-icon" />
+          <img alt="React Native" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" title="React Native" class="skill-icon" />
+          <img alt="MongoDB" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" title="MongoDB" class="skill-icon" />
+          <img alt="MySQL" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" title="MySQL" class="skill-icon" />
+          <img alt="Firebase" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/firebase/firebase-original.svg" title="Firebase" class="skill-icon" />
+          <img alt="Git" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" title="Git" class="skill-icon" />
+          <img alt="GitHub" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" title="GitHub" class="skill-icon" />
+          <img alt="Docker" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" title="Docker" class="skill-icon" />
+          <img alt="WordPress" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/wordpress/wordpress-original.svg" title="WordPress" class="skill-icon" />
+          <img alt="VS Code" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" title="VS Code" class="skill-icon" />
+          <img alt="HTML5" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" title="HTML5" class="skill-icon" />
+          <img alt="CSS3" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" title="CSS3" class="skill-icon" />
         </div>
       </div>
     </section>
 
+    <section id="experiencia" class="card mb-12 scroll-mt-20">
+      <h2 class="section-title">Experiencia Laboral</h2>
+      <div class="space-y-10"> <!-- Aumenté un poco el espacio entre experiencias -->
 
-    <section class="mb-12" id="experiencia">
-      <h2 class="text-2xl font-semibold text-white-800">Experiencia Laboral</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <h3 class="font-semibold text-white">Febrero 2025 a Vigente 2025 · Auxiliar de Soporte</h3>
-          <p class="text-white">CFS CLIENT FIRST SERVICES · Bogotá D.C</p>
-          <h4 class="font-semibold text-white mt-2">Labores realizadas:</h4>
-          <ul class="list-disc list-inside text-white">
-            <li>Soporte técnico y atención al cliente en mesa de servicios.</li>
-            <li>Diagnóstico y solución de incidentes de hardware, software y redes.</li>
-            <li>Gestión y seguimiento de tickets en herramientas de servicio.</li>
-            <li>Aplicación de protocolos de escalamiento según niveles de servicio.</li>
-            <li>Comunicación efectiva y orientación al usuario.</li>
-            <li>Trabajo en equipo y enfoque en la mejora continua.</li>
-            <li>Compromiso con la calidad en la atención y resolución de problemas.</li>
+          <h3 class="subsection-title text-blue-400">Auxiliar de Soporte Técnico</h3>
+          <p class="font-semibold text-gray-300">CFS CLIENT FIRST SERVICES · Bogotá D.C</p>
+          <p class="text-sm text-gray-400">Febrero 2025 – Actualidad</p>
+          <h4 class="font-semibold text-gray-200 mt-3 mb-1">Responsabilidades y Logros Clave:</h4>
+          <ul class="list-disc list-inside section-text space-y-1">
+            <li>Provisión de soporte técnico integral (Nivel 1 y 2) y atención especializada a clientes en la mesa de servicios, asegurando la continuidad operativa.</li>
+            <li>Diagnóstico proactivo y resolución eficiente de incidentes relacionados con hardware, software y configuraciones de red, minimizando el tiempo de inactividad.</li>
+            <li>Gestión y seguimiento riguroso de tickets mediante herramientas ITSM, garantizando el cumplimiento de los Acuerdos de Nivel de Servicio (SLAs).</li>
+            <li>Aplicación de protocolos de escalamiento para incidentes complejos, coordinando con equipos de Nivel 3 para su pronta resolución.</li>
+            <li>Mantenimiento de una comunicación clara y efectiva con los usuarios, ofreciendo orientación técnica y fomentando la adopción de buenas prácticas.</li>
+            <li>Colaboración activa en equipos multidisciplinarios para la mejora continua de procesos y la documentación de soluciones técnicas.</li>
+            <li>Compromiso demostrado con la calidad del servicio, enfocado en la satisfacción del cliente y la resolución efectiva de problemas.</li>
           </ul>
         </div>
 
-
         <div>
-          <h3 class="font-semibold text-white">Octubre 2023 a Abril 2024 · Agente Mesa de Servicio</h3>
-          <p class="text-white">COMWARE COLOMBIA · Bogotá D.C</p>
-          <h4 class="font-semibold text-white mt-2">Labores realizadas:</h4>
-          <ul class="list-disc list-inside text-white">
-            <li>Soporte técnico y atención al cliente en mesa de servicios.</li>
-            <li>Diagnóstico y solución de incidentes de hardware, software y redes.</li>
-            <li>Gestión y seguimiento de tickets en herramientas de servicio.</li>
-            <li>Aplicación de protocolos de escalamiento según niveles de servicio.</li>
-            <li>Comunicación efectiva y orientación al usuario.</li>
-            <li>Trabajo en equipo y enfoque en la mejora continua.</li>
-            <li>Compromiso con la calidad en la atención y resolución de problemas.</li>
+          <h3 class="subsection-title text-blue-400">Agente de Mesa de Servicio</h3>
+          <p class="font-semibold text-gray-300">COMWARE COLOMBIA · Bogotá D.C</p>
+          <p class="text-sm text-gray-400">Octubre 2023 – Abril 2024</p>
+          <h4 class="font-semibold text-gray-200 mt-3 mb-1">Responsabilidades y Logros Clave:</h4>
+          <ul class="list-disc list-inside section-text space-y-1">
+            <li>Suministro de soporte técnico de primer nivel a usuarios, atendiendo y resolviendo consultas e incidencias de manera oportuna.</li>
+            <li>Identificación, diagnóstico y solución de problemas técnicos relacionados con hardware, software y conectividad de red.</li>
+            <li>Registro detallado y seguimiento de incidentes en el sistema de gestión de tickets, asegurando la correcta documentación y cierre de los mismos.</li>
+            <li>Escalamiento de incidencias complejas a los equipos técnicos correspondientes, facilitando la comunicación y el seguimiento hasta su resolución.</li>
+            <li>Contribución a la creación y mantenimiento de la base de conocimientos con soluciones a problemas recurrentes.</li>
           </ul>
         </div>
 
-
-        <!-- ATENTO COLOMBIA -->
         <div>
-          <h3 class="font-semibold text-white">Febrero 2023 a Septiembre 2024 · Rac Teléfono</h3>
-          <p class="text-white">ATENTO COLOMBIA · Bogotá D.C</p>
-          <h4 class="font-semibold text-white mt-2">Labores realizadas:</h4>
-          <ul class="list-disc list-inside text-white">
-            <li>Atención y soporte a clientes vía telefónica, resolviendo dudas e inconvenientes de manera eficiente.
-            </li>
-            <li>Gestión de solicitudes, reclamos y seguimiento de casos para garantizar la satisfacción del cliente.
-            </li>
-            <li>Registro y actualización de información en el sistema de gestión de clientes.</li>
-            <li>Manejo de herramientas y software de atención al cliente para optimizar tiempos de respuesta.</li>
-            <li>Aplicación de protocolos de servicio y comunicación efectiva para mejorar la experiencia del usuario.
-            </li>
-            <li>Trabajo en equipo con otras áreas para la resolución de problemas y mejora de procesos.</li>
-            <li>Cumplimiento de indicadores de desempeño como tiempo de atención, satisfacción y resolución en primer
-              contacto.</li>
+          <h3 class="subsection-title text-blue-400">Especialista en Atención al Cliente (RAC Teléfono)</h3>
+          <p class="font-semibold text-gray-300">ATENTO COLOMBIA · Bogotá D.C</p>
+          <p class="text-sm text-gray-400">Febrero 2023 – Septiembre 2024</p>
+          <h4 class="font-semibold text-gray-200 mt-3 mb-1">Responsabilidades y Logros Clave:</h4>
+          <ul class="list-disc list-inside section-text space-y-1">
+            <li>Provisión de atención y soporte especializado a clientes vía telefónica, enfocándome en la resolución ágil y efectiva de consultas, incidencias y requerimientos.</li>
+            <li>Gestión integral de solicitudes y reclamos, realizando un seguimiento exhaustivo de cada caso para garantizar la satisfacción del cliente y el cumplimiento de los estándares de servicio.</li>
+            <li>Utilización experta de sistemas de gestión de clientes (CRM) para el registro preciso, actualización de información y documentación de interacciones.</li>
+            <li>Manejo eficiente de herramientas y software de atención, optimizando los tiempos de respuesta y la calidad del servicio ofrecido.</li>
+            <li>Aplicación de protocolos de servicio y comunicación asertiva para mejorar la experiencia del usuario y fidelizar a los clientes.</li>
           </ul>
         </div>
 
-        <!-- DATA TOOLS S.A.S -->
         <div>
-          <h3 class="font-semibold text-white">Enero 2021 a Julio 2022 · Analista de Datos</h3>
-          <p class="text-white">DATA TOOLS S.A.S · Bogotá D.C</p>
-          <h4 class="font-semibold text-white mt-2">Labores realizadas:</h4>
-          <ul class="list-disc list-inside text-white">
-            <li>Redacción de oficios, memorandos y documentos institucionales.</li>
-            <li>Atención eficiente a clientes internos y externos.</li>
-            <li>Coordinación y organización de reuniones oficiales.</li>
-            <li>Gestión y archivo de documentos según normativas vigentes.</li>
-            <li>Control y seguimiento de inventario de bienes y elementos.</li>
-            <li>Recepción y gestión de asuntos de la dependencia.</li>
-            <li>Radicación, distribución y seguimiento de correspondencia.</li>
-            <li>Apoyo en clasificación, registro y preservación de archivos.</li>
-            <li>Orientación de visitantes y control de acceso a instalaciones.</li>
-            <li>Redacción de actas de reuniones y seguimiento de acuerdos.</li>
+          <h3 class="subsection-title text-blue-400">Analista de Soporte Administrativo y Documental</h3>
+          <p class="font-semibold text-gray-300">DATA TOOLS S.A.S · Bogotá D.C</p>
+          <p class="text-sm text-gray-400">Enero 2021 – Julio 2022</p>
+          <h4 class="font-semibold text-gray-200 mt-3 mb-1">Responsabilidades y Logros Clave:</h4>
+          <ul class="list-disc list-inside section-text space-y-1">
+            <li>Elaboración y gestión de documentación oficial y comunicaciones institucionales (oficios, memorandos), asegurando la precisión y el cumplimiento de normativas.</li>
+            <li>Coordinación logística y administrativa de reuniones oficiales, incluyendo la preparación de material y la redacción de actas con seguimiento de acuerdos.</li>
+            <li>Implementación y mantenimiento de sistemas de archivo físico y digital, garantizando la correcta clasificación, registro, preservación y accesibilidad de documentos.</li>
+            <li>Provisión de atención y soporte eficiente a clientes internos y externos, gestionando consultas y facilitando la comunicación interdepartamental.</li>
+            <li>Administración del inventario de bienes y elementos de oficina, realizando controles y seguimientos periódicos.</li>
+            <li>Recepción, radicación, distribución y seguimiento de correspondencia, optimizando los flujos de comunicación interna y externa.</li>
           </ul>
         </div>
 
-
-        <div class="mt-6 md:col-span-2">
-          <p class="text-white-700 text-lg font-semibold flex items-center">
-            <i class="fas fa-building text-primary-color mr-2"></i> Clientes destacados:
+        <div class="pt-4">
+          <p class="text-gray-200 text-lg font-semibold flex items-center">
+            <i class="fas fa-building text-blue-400 mr-2"></i> Clientes y Proyectos Destacados (a través de empleadores):
           </p>
-          <ul class="list-disc list-inside text-white-600 mt-2">
-            <li><strong>IBM</strong> - soluciones empresariales.</li>
-            <li><strong>Lenovo</strong> - soporte de hardware y software.</li>
-            <li><strong>HP</strong> - Implementación de soluciones TI personalizadas.</li>
-            <li><strong>Fiducia</strong> - Gestión de sistemas tecnológicos.</li>
-            <li><strong>Stefanini</strong> - Soporte en sitio</li>
-            <li><strong>Almaviva</strong> - Optimización de Equipos y tecnológicos.</li>
-            <li><strong>Banco Bogotá</strong> - Soporte técnico de sistemas bancarios.</li>
+          <ul class="list-disc list-inside section-text mt-2 space-y-1">
+            <li>Soporte y gestión de servicios TI para cuentas clave como <strong>IBM</strong> y <strong>Lenovo</strong>, enfocados en soluciones empresariales y soporte de hardware/software.</li>
+            <li>Implementación de soluciones TI personalizadas y mantenimiento para empresas como <strong>HP Inc.</strong> y entidades del sector financiero como <strong>Fiducia</strong> y <strong>Banco de Bogotá</strong>.</li>
+            <li>Colaboración en proyectos de optimización tecnológica y soporte en sitio para consultoras como <strong>Stefanini</strong> y empresas logísticas como <strong>Almaviva</strong>.</li>
           </ul>
         </div>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold text-white-800">Educación Superior</h2>
-      <div class="text-white-700 mt-4">
-        <p><strong>Universidad:</strong> Universidad Nacional Abierta y a Distancia (UNAD)</p>
-        <p><strong>Título:</strong> Ingeniería de Sistemas</p>
-        <p><strong>Año:</strong> 2025 (Actualmente cursando séptimo semestre)</p>
-        <p><strong>Bogotá D.C</strong></p>
       </div>
     </section>
 
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold text-white-800">Cursos</h2>
-      <ul class="list-disc list-inside text-white-700">
-        <li>Desarrollo de Aplicaciones con Manejo de Datos en la Memoria - Java/Sena</li>
-        <li>Conceptos y Usos de Bases de Datos con Microsoft Access/Sena</li>
-        <li>Diseño Web Responsivo/Freecodecamp</li>
-        <li>Algoritmos y Estructura de Datos con JavaScript/Freecodecamp</li>
+    <!-- Educación y Cursos -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <section class="card scroll-mt-20">
+        <h2 class="section-title">Formación Académica</h2>
+        <div class="section-text mt-4 space-y-2">
+          <div>
+            <p class="font-semibold text-gray-200">Ingeniería de Sistemas</p>
+            <p>Universidad Nacional Abierta y a Distancia (UNAD)</p>
+            <p class="text-sm text-gray-400">Bogotá D.C. · Finalización Esperada: 2025 (Cursando séptimo semestre)</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card scroll-mt-20">
+        <h2 class="section-title">Cursos y Certificaciones</h2>
+        <ul class="list-disc list-inside section-text mt-4 space-y-2">
+          <li>
+            <span class="font-semibold text-gray-300">Desarrollo de Aplicaciones con Manejo de Datos en Memoria (Java)</span> - SENA
+          </li>
+          <li>
+            <span class="font-semibold text-gray-300">Conceptos y Usos de Bases de Datos (Microsoft Access)</span> - SENA
+          </li>
+          <li>
+            <span class="font-semibold text-gray-300">Responsive Web Design Certification</span> - freeCodeCamp
+          </li>
+          <li>
+            <span class="font-semibold text-gray-300">JavaScript Algorithms and Data Structures Certification</span> - freeCodeCamp
+          </li>
+          <!-- Si tienes más cursos, puedes añadirlos aquí -->
+        </ul>
+      </section>
+    </div>
+
+    <!-- Idiomas, Herramientas y Reconocimientos -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <section class="card scroll-mt-20">
+            <h2 class="section-title">Idiomas</h2>
+            <ul class="section-text mt-4 space-y-1">
+                <li><span class="font-semibold text-gray-300">Español:</span> Nativo</li>
+                <li><span class="font-semibold text-gray-300">Inglés:</span> Intermedio (B1/B2 - Especificar si tienes certificación)</li>
+            </ul>
+        </section>
+
+        <section class="card scroll-mt-20">
+            <h2 class="section-title">Herramientas Ofimáticas y Colaborativas</h2>
+            <p class="section-text mt-4 leading-relaxed">
+                <span class="font-semibold text-gray-300">Microsoft Office Suite:</span> Excel (Intermedio/Avanzado), PowerPoint, Word, Teams, Access, Outlook. <br>
+                <span class="font-semibold text-gray-300">Google Workspace:</span> Gmail, Docs, Sheets, Slides, Forms, Drive.
+            </p>
+            <!-- Podrías listar otras herramientas aquí si es relevante, como Trello, Asana, etc. -->
+        </section>
+
+        <section class="card scroll-mt-20">
+            <h2 class="section-title">Reconocimientos y Logros Adicionales</h2>
+            <ul class="section-text mt-4 space-y-1">
+                <li>
+                    <span class="font-semibold text-gray-300">Sensibilización y Motivación en Emprendimiento</span><br>
+                    <span class="text-sm text-gray-400">Servicio Nacional de Aprendizaje (SENA), 2016</span>
+                </li>
+                <!-- Si tienes otros reconocimientos, menciónalos aquí -->
+            </ul>
+        </section>
+    </div>
+
+    <section id="proyectos" class="card mb-12 scroll-mt-20">
+      <h2 class="section-title">Proyectos</h2>
+      <ul class="list-disc list-inside section-text">
+        <li><a href="https://github.com/edwinpantojab" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 hover:underline">Repositorio de proyectos en GitHub</a></li>
       </ul>
     </section>
 
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold text-white-800">Idiomas</h2>
-      <p class="text-white-700">Español (Nativo) · Inglés (Intermedio)</p>
-    </section>
+    <!-- Reemplaza el bloque de referencias actual por este para un formato más profesional y visual -->
+    <!-- Referencias -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <section class="card scroll-mt-20">
+          <h2 class="section-title">Referencias Personales</h2>
+          <div class="mt-4 space-y-4">
+            <div>
+              <p class="font-semibold text-gray-200">Yeison Varela</p>
+              <ul class="section-text text-sm space-y-1 mt-1">
+                <li class="flex items-center">
+                  <i class="fas fa-phone text-blue-400 mr-2 w-4 text-center"></i>
+                  <a href="tel:+573108636989" class="hover:text-blue-300">(310) 863 6989</a>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-envelope text-blue-400 mr-2 w-4 text-center"></i>
+                  <a href="mailto:yeissonmk@gmail.com" class="hover:text-blue-300 hover:underline">yeissonmk@gmail.com</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-semibold text-gray-200">Johana Varela</p>
+              <ul class="section-text text-sm space-y-1 mt-1">
+                <li class="flex items-center">
+                  <i class="fas fa-phone text-blue-400 mr-2 w-4 text-center"></i>
+                  <a href="tel:+573143304531" class="hover:text-blue-300">(314) 330 4531</a>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-envelope text-blue-400 mr-2 w-4 text-center"></i>
+                  <a href="mailto:varela.ij@gmail.com" class="hover:text-blue-300 hover:underline">varela.ij@gmail.com</a>
+                </li>
+              </ul>
+            </div>
+            <p class="text-xs text-gray-500 mt-3">*Referencias disponibles bajo solicitud formal.</p>
+          </div>
+        </section>
+    
+        <section class="card scroll-mt-20">
+          <h2 class="section-title">Referencias Laborales</h2>
+           <div class="mt-4 space-y-4">
+            <div>
+              <p class="font-semibold text-gray-200">Orlando Bolaños</p>
+              <p class="text-xs text-gray-400">Relación/Cargo (Ej: Ex-Supervisor en CFS)</p>
+              <ul class="section-text text-sm space-y-1 mt-1">
+                <li class="flex items-center">
+                  <i class="fas fa-phone text-blue-400 mr-2 w-4 text-center"></i>
+                  <a href="tel:+573123051865" class="hover:text-blue-300">(312) 305 1865</a>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-envelope text-blue-400 mr-2 w-4 text-center"></i>
+                  <a href="mailto:orlandobolanos@cfs.com.co" class="hover:text-blue-300 hover:underline">orlandobolanos@cfs.com.co</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-semibold text-gray-200">Yuleny Suns</p>
+              <p class="text-xs text-gray-400">Relación/Cargo (Ej: Ex-Colega en CFS)</p>
+              <ul class="section-text text-sm space-y-1 mt-1">
+                <li class="flex items-center">
+                  <i class="fas fa-phone text-blue-400 mr-2 w-4 text-center"></i>
+                  <a href="tel:+573152270193" class="hover:text-blue-300">(315) 227 0193</a>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-envelope text-blue-400 mr-2 w-4 text-center"></i>
+                  <a href="mailto:yulenycastaneda@cfs.com.co" class="hover:text-blue-300 hover:underline">yulenycastaneda@cfs.com.co</a>
+                </li>
+              </ul>
+            </div>
+            <p class="text-xs text-gray-500 mt-3">*Referencias disponibles bajo solicitud formal.</p>
+          </div>
+        </section>
+    </div>
 
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold text-white-800">Herramientas Ofimáticas</h2>
-      <p class="text-white-700">Excel, PowerPoint, Word, Teams, Access, Outlook, Gmail, Google Docs, Forms, Drive</p>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold text-white-800">Reconocimientos</h2>
-      <p class="text-white-700">Sensibilización y Motivación en Emprendimiento (SENA, 2016)</p>
-    </section>
-
-    <section id="proyectos" class="mb-12">
-      <h2 class="text-2xl font-semibold text-white-800">Proyectos</h2>
-      <ul class="list-disc list-inside text-blue-700">
-        <li><a href="https://github.com/edwinpantojab" target="_blank">Repositorio de proyectos en GitHub</a></li>
-      </ul>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold text-white-800">Referencias Personales</h2>
-      <ul class="list-disc list-inside text-white-700">
-        <li>Yeison Varela · (310) 863 6989 · yeissonmk@gmail.com</li>
-        <li>Johana Varela · (314) 330 4531 · varela.ij@gmail.com</li>
-      </ul>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold text-white-800">Referencias Laborales</h2>
-      <ul class="list-disc list-inside text-white-700">
-        <li>Orlando Bolaños · (312) 305 1865 · orlandobolanos@cfs.com.co</li>
-        <li>Yuleny Suns · (315) 227 0193 · yulenycastaneda@cfs.com.co</li>
-      </ul>
-    </section>
-
-    <section id="contacto" class="mb-12">
-      <h2 class="text-2xl font-semibold text-white-800">📞 Contacto</h2>
-      <div class="mt-4 text-white-700">
-        <ul class="list-none space-y-2">
-          <!-- Teléfono -->
-          <li class="flex items-center">
-            <i class="fas fa-phone text-primary-color mr-2"></i>
-            <span>(+57) 323-393-2071</span>
-          </li>
-          <!-- Correo 1 -->
-          <li class="flex items-center">
-            <i class="fas fa-envelope text-primary-color mr-2"></i>
-            <a href="mailto:edwinpantoja2015@gmail.com" class="hover:underline">edwinpantoja2015@gmail.com</a>
-          </li>
-          <!-- Correo 2 -->
-          <li class="flex items-center">
-            <i class="fas fa-envelope text-primary-color mr-2"></i>
-            <a href="mailto:edwinpantoja2020@hotmail.com" class="hover:underline">edwinpantoja2020@hotmail.com</a>
-          </li>
-          <!-- LinkedIn -->
-          <li class="flex items-center">
-            <i class="fab fa-linkedin text-primary-color mr-2"></i>
-            <a href="https://www.linkedin.com/in/edwin-pantoja-bustos-07233b264/" target="_blank"
-              class="hover:underline">
-              LinkedIn/https://www.linkedin.com/in/edwin-pantoja-bustos-07233b264/
-            </a>
-          </li>
-          <!-- GitHub -->
-          <li class="flex items-center">
-            <i class="fab fa-github text-primary-color mr-2"></i>
-            <a href="https://github.com/edwinpantojab" target="_blank" class="hover:underline">
-              https://github.com/edwinpantojab
-            </a>
-          </li>
-          <!-- Dirección -->
-          <li class="flex items-center">
-            <i class="fas fa-map-marker-alt text-primary-color mr-2"></i>
-            <span>Bogotá D.C - Colombia</span>
-          </li>
+    <section id="contacto" class="card mb-12 scroll-mt-20">
+      <h2 class="section-title">📞 Contacto</h2>
+      <div class="mt-4 section-text">
+        <ul class="space-y-3">
+          <li class="flex items-center"><i class="fas fa-phone text-blue-400 mr-3 w-5 text-center"></i><a href="tel:+573233932071" class="hover:text-blue-300">(+57) 323-393-2071</a></li>
+          <li class="flex items-center"><i class="fas fa-envelope text-blue-400 mr-3 w-5 text-center"></i><a href="mailto:edwinpantoja2015@gmail.com" class="hover:text-blue-300 hover:underline">edwinpantoja2015@gmail.com</a></li>
+          <li class="flex items-center"><i class="fas fa-envelope text-blue-400 mr-3 w-5 text-center"></i><a href="mailto:edwinpantoja2020@hotmail.com" class="hover:text-blue-300 hover:underline">edwinpantoja2020@hotmail.com</a></li>
+          <li class="flex items-center"><i class="fab fa-linkedin text-blue-400 mr-3 w-5 text-center"></i><a href="https://www.linkedin.com/in/edwin-pantoja-bustos-07233b264/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-300 hover:underline">LinkedIn Profile</a></li>
+          <li class="flex items-center"><i class="fab fa-github text-blue-400 mr-3 w-5 text-center"></i><a href="https://github.com/edwinpantojab" target="_blank" rel="noopener noreferrer" class="hover:text-blue-300 hover:underline">GitHub Profile</a></li>
+          <li class="flex items-center"><i class="fas fa-map-marker-alt text-blue-400 mr-3 w-5 text-center"></i><span>Bogotá D.C - Colombia</span></li>
         </ul>
       </div>
     </section>
   </main>
 
   <!-- Flecha para volver arriba -->
-  <button id="scrollTopBtn" title="Volver arriba">
+  <button id="scrollTopBtn" title="Volver arriba" aria-label="Volver arriba" class="hidden fixed bottom-10 right-10 z-[60] bg-blue-500 hover:bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-xl transition-opacity duration-300">
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <!-- Footer -->
-  <footer class="text-center text-sm py-6">
-    <p>&copy; 2025 CV/E P B — Todos los derechos reservados</p>
-    <p>Construyendo el futuro, una línea de código a la vez.</p>
+  <!-- Footer anterior, reemplázalo por el nuevo footer mejorado -->
+  <footer id="page-footer" class="relative z-10 mt-16 py-8 sm:py-12 text-center border-t border-gray-700 bg-gray-800 bg-opacity-70 backdrop-blur-sm">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Iconos Sociales -->
+      <div class="mb-6 flex justify-center space-x-5">
+        <a href="https://github.com/edwinpantojab" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="GitHub de Edwin Pantoja">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/edwin-pantoja-bustos-07233b264/" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="LinkedIn de Edwin Pantoja">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="mailto:edwinpantoja2015@gmail.com" class="footer-social-icon" aria-label="Enviar correo a Edwin Pantoja">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+      <p class="text-sm text-gray-400 mb-2">
+        © <span id="currentYearFooter"></span> Edwin Pantoja Bustos (E P B). Todos los derechos reservados.
+      </p>
+      <p class="text-xs text-gray-500 italic">
+        "Construyendo el futuro, una línea de código a la vez."
+      </p>
+      <p class="mt-6 text-xs text-gray-600">
+        Diseñado y desarrollado con <i class="fas fa-heart text-red-500 animate-pulse-slow"></i> y pasión por la tecnología.
+      </p>
+      <!-- <a href="#inicio" class="mt-4 inline-block text-xs text-blue-400 hover:text-blue-300 hover:underline">Volver al inicio <i class="fas fa-arrow-up ml-1"></i></a> -->
+    </div>
   </footer>
-  
+
   <script src="script.js"></script>
 </body>
-
 </html>

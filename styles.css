@@ -1,456 +1,249 @@
-/* Paleta de colores */
+/* Paleta de colores y variables base */
 :root {
-  --primary-color: #1e3a8a; /* Azul oscuro */
-  --secondary-color: #2563eb; /* Azul intermedio */
-  --accent-color: #93c5fd; /* Azul claro */
-  --background-color: #f9fafb; /* Fondo claro */
-  --text-color: #000000; /* Texto oscuro */
-  --muted-text-color: #ffffff; /* Texto gris */
+  --primary-color: #2563eb; /* Azul (blue-600 de Tailwind) */
+  --secondary-color: #3b82f6; /* Azul más claro (blue-500) */
+  --accent-color: #60a5fa; /* Azul aún más claro (blue-400) */
+  --background-dark: #111827; /* Gris oscuro (gray-900) */
+  --background-card: rgba(31, 41, 55, 0.7); /* Gris (gray-800) con transparencia para cards */
+  --text-light: #e5e7eb; /* Gris claro (gray-200) */
+  --text-medium: #9ca3af; /* Gris medio (gray-400) */
+  --text-dark: #1f2937; /* Gris oscuro para texto en fondos claros (gray-800) */
+  --navbar-height: 64px; /* Ajusta según la altura real de tu navbar */
 }
 
-/* General */
-html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
+/* Estilos Generales */
+html {
+  scroll-behavior: smooth; /* Habilita el scroll suave globalmente */
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  position: relative;
-  overflow-x: hidden;
-  color: #000000; /* Todo el texto en blanco */
-  background: none;
+  background-color: var(--background-dark); /* Fondo oscuro principal */
+  color: var(--text-light); /* Color de texto principal claro */
+  overflow-x: hidden; /* Evita scroll horizontal */
 }
 
+/* Lienzo de estrellas (fondo animado) */
 #stars {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1;
   width: 100%;
   height: 100%;
+  z-index: 0; /* Detrás de todo el contenido */
 }
 
-nav {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0.9));
-  backdrop-filter: blur(5px);
-  transition: transform 0.3s ease-in-out;
+/* Barra de Navegación */
+#navbar {
+  background-color: rgba(17, 24, 39, 0.0); /* Inicialmente transparente (gray-900 con alfa) */
+  backdrop-filter: blur(0px); /* Sin blur inicial */
+  box-shadow: none; /* Sin sombra inicial */
+  transition: background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  height: var(--navbar-height);
 }
 
-nav.hidden {
+#navbar.navbar-scrolled {
+  background-color: rgba(31, 41, 55, 0.85); /* Fondo semi-transparente (gray-800) */
+  backdrop-filter: blur(8px); /* Efecto de cristal esmerilado */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+#navbar.navbar-hidden {
   transform: translateY(-100%);
 }
 
+.nav-link {
+  color: var(--text-light);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.nav-link:hover,
+.nav-link.active { /* Considera añadir una clase 'active' con JS para la sección actual */
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Menú Móvil */
+#mobile-menu {
+  /* La clase 'hidden' de Tailwind maneja display: none; */
+  /* Estas son para la transición cuando 'hidden' se quita/pone */
+  opacity: 0;
+  visibility: hidden;
+  /* Asegura que no sea interactuable cuando opacity es 0 */
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+#mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0s linear 0s;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  max-width: 300px;
+  padding: 0.75rem 1rem;
+  font-size: 1.25rem; /* 20px */
+  font-weight: 600;
+  color: var(--text-light);
+  border-radius: 0.5rem; /* 8px */
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.mobile-nav-link:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+.mobile-nav-link i {
+  width: 24px; /* Para alinear el texto aunque algunos iconos sean más anchos */
+}
+
+
+/* Contenido Principal */
 main {
-  background: rgba(18, 28, 53, 0.85);
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.5);
+  position: relative;
+  z-index: 10; /* Encima del canvas de estrellas */
 }
 
-h1, h2, h3, p, li {
-  color: #e5e7eb;
-}
-
-a {
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: #60a5fa;
-}
-
-hr {
-  border: 1px solid #ffffff;
-  margin: 20px 0;
-}
-
-footer {
-  background: linear-gradient(to right, #ffffff, #000000, #ffffff);
-  color: #ffffff;
-  text-align: center;
-  padding: 1.5rem 0;
-}
-
-footer, footer * {
-  color: #fff !important;
-}
-
-/* Títulos */
-h1, h2, h3, h4 {
-  color: #000000 !important;
-  font-weight: 700;
-}
-
-h1, h2, h3 {
-  color: #000000;
- 
-}
-
-h1, h2, h3, p, li {
-  color: #000000;
-}
-
-/* Texto general */
-h1, h2, h3, h4, h5, h6, p, li, a, span, label, th, td, strong, b {
-  color: #000000 !important;
-}
-
-/* Secciones */
-section {
-  margin-bottom: 40px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(255, 254, 254, 0.1);
-  animation: fadeIn 0.8s ease forwards;
+/* Estilo base para las tarjetas de sección */
+.card {
+  background-color: var(--background-card);
+  padding: 1.5rem; /* 24px */
+  border-radius: 0.75rem; /* 12px */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  /* Animación de entrada */
   opacity: 0;
   transform: translateY(20px);
-  scroll-margin-top: 80px; /* Ajusta según la altura de tu barra de navegación */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  scroll-margin-top: calc(var(--navbar-height) + 20px); /* Espacio para la navbar fija */
 }
-
-section.visible {
+.card.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Títulos y Texto dentro de las tarjetas */
+.section-title {
+  font-size: 1.75rem; /* 28px */
+  font-weight: 700;
+  color: white; /* Los títulos principales dentro de las cards serán blancos */
+  margin-bottom: 1rem; /* 16px */
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-color);
+  display: inline-block;
 }
-
-@keyframes moveBackground {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 100% 100%;
-  }
-}
-
-/* Títulos de secciones */
-section h2 {
-  margin-bottom: 20px;
-  font-size: 1.75rem;
-  color: #000000 !important; /* Color oscuro para los títulos */
-}
-
-/* Texto */
-p, ul {
-  margin-bottom: 15px;
-  color: #000000; /* Color gris para el texto */
-}
-
-/* Texto de párrafos y listas */
-p, ul, ol, li {
-  color: #000000 !important;
-}
-
-/* Barra de navegación */
-nav {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0.9));
-  backdrop-filter: blur(5px);
-  transition: transform 0.3s ease-in-out;
-}
-
-nav.hidden {
-  transform: translateY(-100%);
-}
-
-nav a {
-  color: #ffffff;
-  text-decoration: none;
+.subsection-title {
+  font-size: 1.25rem; /* 20px */
   font-weight: 600;
-  transition: color 0.3s ease;
-  margin-right: 15px;
+  color: var(--accent-color); /* Color de acento para subtítulos */
+  margin-bottom: 0.75rem; /* 12px */
 }
-
-nav a:hover {
-  color: #2563eb !important; /* Azul visible */
-  /* Si prefieres blanco, usa: color: #fff !important; */
-  text-decoration: underline;
-  transition: color 0.3s;
+.section-text {
+  color: var(--text-light);
+  line-height: 1.65;
+  margin-bottom: 0.75rem;
 }
-
-/* Listas */
-ul.list-disc {
-  padding-left: 1.5rem;
+.section-text strong {
+  color: var(--text-medium); /* Un poco más destacado */
 }
-
-ul.list-disc li {
-  margin-bottom: 0.5rem;
+.card ul {
+  padding-left: 1.25rem; /* 20px */
 }
-
-ul {
-  margin: 10px 0;
-  padding-left: 20px;
+.card li {
+  margin-bottom: 0.35rem; /* 8px */
 }
-
-ul li {
-  margin-bottom: 5px;
-}
-
-/* Enlaces */
-a {
-  color: var(--secondary-color);
+.card a {
+  color: var(--accent-color);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
 }
-
-a:hover {
-  color: #60a5fa;
+.card a:hover {
+  color: var(--secondary-color);
   text-decoration: underline;
 }
 
-/* Asegurar que el footer esté al final */
-html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
+
+/* Iconos Sociales y de Habilidades */
+.social-icon {
+  font-size: 1.75rem; /* 28px */
+  color: var(--accent-color);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.social-icon:hover {
+  color: var(--secondary-color);
+  transform: scale(1.2);
 }
 
-/* Contenedor principal */
-main {
-  flex: 1; /* Hace que el contenido principal ocupe el espacio restante */
-  margin-top: 80px; /* Espacio debajo de la barra de navegación */
-  padding: 2rem;
-  background: rgba(18, 28, 53, 0.85);
-  border-radius: 1rem;
-  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.5);
-}
-
-/* Estilo del footer */
-footer {
-  background: linear-gradient(to right, #ffffff, #000000, #ffffff);
-  color: white;
-  text-align: center;
-  padding: 20px;
-  font-size: 0.875rem; /* Tamaño de texto pequeño */
-  margin-top: 40px;
-}
-
-/* Secciones adicionales */
-section#inicio {
-  margin-bottom: 3rem;
-}
-
-section#sobre-mi {
-  margin-bottom: 3rem;
-}
-
-section#habilidades {
-  margin-bottom: 3rem;
-}
-
-#stars {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-}
-
-hr {
-  border: 1px solid #ffffff;
-  margin: 20px 0;
-}
-
-#navbar {
-  transition: transform 0.3s ease-in-out;
-}
-
-/* Estilos responsivos para imágenes */
 .skill-icon {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   transition: transform 0.3s ease;
+  filter: grayscale(30%); /* Un toque sutil */
 }
-
+.skill-icon:hover {
+  transform: scale(1.3);
+  filter: grayscale(0%);
+}
 @media (max-width: 640px) {
   .skill-icon {
-    width: 28px;
-    height: 28px;
-  }
-  
-  #skills-icons {
-    grid-template-columns: repeat(4, 1fr);
+    width: 40px;
+    height: 40px;
   }
 }
 
-.skill-icon:hover {
-  transform: scale(1.5);
-}
-
-.icon i {
-  transition: transform 0.3s ease;
-}
-
-.icon:hover i {
-  transform: scale(1.5);
-}
-
-/* Mejoras de responsividad para el contenido */
-@media (max-width: 768px) {
-  main {
-    padding: 1rem;
-    margin-top: 80px; /* Espacio para la barra de navegación */
-  }
-  
-  .grid-cols-2, .grid-cols-6 {
-    grid-template-columns: 1fr;
-  }
-  
-  #social-icons {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  nav div {
-    padding: 0.5rem;
-  }
-  
-  nav a {
-    font-size: 0.9rem;
-    padding: 0.25rem 0.5rem;
-  }
-}
-
-/* Colores para el header principal */
-header.text-center h1,
-header.text-center p {
-  color: #fff !important;
-}
-
-/* Íconos sociales en azul */
-#social-icons .icon i {
-  color: #2563eb !important; /* Azul Tailwind-600 */
-  transition: color 0.3s, transform 0.3s;
-}
-
-#social-icons .icon i:hover {
-  color: #1d4ed8 !important; /* Azul más oscuro al pasar el mouse */
-  transform: scale(1.3);
-}
-
-/* Flecha flotante para volver arriba */
+/* Botón de Scroll hacia Arriba */
 #scrollTopBtn {
-  display: none;
-  /* ...resto del estilo... */
-  width: 64px;
-  height: 64px;
-  font-size: 2.5rem;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, background-color 0.3s ease;
+  z-index: 60; /* Asegura que esté por encima del footer */
 }
-
-#scrollTopBtn {
-  display: none;
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  z-index: 100;
-  background: #f59e42; /* Naranja brillante */
-  color: #fff;
-  border: none;
-  outline: none;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-  cursor: pointer;
-  font-size: 2.5rem; /* Más grande el ícono */
-  transition: background 0.3s, transform 0.3s;
-}
-
 #scrollTopBtn:hover {
-  background: #ea580c; /* Naranja más oscuro al pasar el mouse */
-  transform: scale(1.15);
+    transform: scale(1.1);
+}
+#scrollTopBtn.hidden { /* Para asegurar que se oculte suavemente */
+    opacity: 0;
+    transform: translateY(100px); /* Lo mueve fuera de la vista antes de display: none */
+}
+#scrollTopBtn.hidden-visually {
+  opacity: 0;
+  transform: translateY(50px);
 }
 
-@media (max-width: 640px) {
-  #scrollTopBtn {
-    width: 48px;
-    height: 48px;
-    font-size: 1.5rem;
-    bottom: 20px;
-    right: 20px;
+/* Footer */
+footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Footer Mejorado */
+#page-footer {
+  /* El backdrop-filter ya está en las clases de Tailwind (bg-opacity-70 backdrop-blur-sm) */
+  /* El border-t border-gray-700 también está en Tailwind */
+}
+
+.footer-social-icon {
+  color: #9ca3af; /* gray-400 */
+  font-size: 1.5rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-social-icon:hover {
+  color: #60a5fa; /* blue-400 */
+  transform: translateY(-2px) scale(1.1);
+}
+
+/* Animación sutil para el corazón */
+@keyframes pulse-slow {
+  0%, 100% {
+    transform: scale(1);
   }
-}
-
-img, table {
-  max-width: 100%;
-  height: auto;
-}
-
-/* --- PON ESTA REGLA AL FINAL DEL ARCHIVO --- */
-footer, footer * {
-  color: #fff !important;
-}
-
-#mobile-menu {
-  transition: opacity 0.3s;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-#mobile-menu a, #mobile-menu button {
-  width: 100%;
-  text-align: center;
-}
-
-@media (max-width: 640px) {
-  #mobile-menu {
-    padding: 0;
-    margin: 0;
-    align-items: center;
-    justify-content: center;
-  }
-  #mobile-menu a, #mobile-menu button {
-    color: #fff !important;
-    width: 100vw;
-    text-align: center;
-    font-size: 2rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    transition: background 0.2s, color 0.2s;
-  }
-  #mobile-menu a:hover {
-    background: #2563eb;
-    color: #fff !important;
-  }
-  #mobile-menu button {
-    background: none;
-    border: none;
-    font-size: 2.5rem;
-    margin-top: 2rem;
+  50% {
+    transform: scale(1.15);
   }
 }
 
-@media (max-width: 480px) {
-  #mobile-menu nav {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-  #mobile-menu nav a {
-    font-size: 1rem !important;
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
-    padding-top: 0.75rem !important;
-    padding-bottom: 0.75rem !important;
-    border-radius: 0.5rem !important;
-    margin-bottom: 0.25rem !important;
-  }
-  #mobile-menu nav i {
-    font-size: 1.1rem !important;
-  }
+.animate-pulse-slow {
+  animation: pulse-slow 2s infinite ease-in-out;
+  display: inline-block;
 }
